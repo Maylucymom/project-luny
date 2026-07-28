@@ -1,0 +1,1362 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Project LUNA Final</title><meta name="theme-color" content="#6f4ab5"><link rel="manifest" href="manifest.webmanifest">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head><body><div class="app"><main class="stage"><div class="bg"></div><div class="veil"></div>
+<div class="topbar"><div class="brand darkglass">🌙 PROJECT LUNA</div></div>
+<section id="home" class="scene active"><div class="home-left"><div class="card darkglass"><div class="datetime-main" id="homeDate"></div><div class="datetime-sub" id="homeTime"></div><small id="weatherText">오늘도 반짝이는 하루</small></div><div class="card glass levelbox">
+  <div class="avatar"><img src="assets/diana_idle.png"></div>
+  <div>
+    <div class="level-money-line">
+      <b id="homeLevel">Lv. 1</b>
+      <span>⭐ <b id="homePoints">0</b>P</span>
+      <span>💎 <b id="homeGems">0</b></span>
+    </div>
+    <div class="progress"><i id="levelBar"></i></div>
+    <small id="nextLevelText"></small>
+    <div class="mood-launchers">
+      <button onclick="openMorningCheck()">☀️ 오전 마음</button>
+      <button onclick="openMoonDiary()">🌙 달빛일기</button>
+    </div>
+    <div id="dayCloseBanner" class="day-close-banner" style="display:none"></div>
+  </div>
+</div><div class="card glass rubyline"><div class="rubyicon"><img src="assets/ruby_idle.png"></div><div><b>루비의 한마디</b><br><small id="rubyMessage"></small></div></div><button id="dailyBonus" class="btn pink">🎁 오늘의 서프라이즈</button></div><div class="home-title"><div>✦ 👑 ✦</div><h1 class="title" id="appTitle">다이애나의 비밀도서관</h1><p id="appSubtitle">마법과 지혜가 자라는 곳</p></div><div class="characters merged-home-characters"><img class="home-duo" src="assets/home_characters.png" alt="다이애나와 루비"></div><div class="home-right"><div class="metric glass"><div class="ico">☀️</div><div><b>오늘의 루틴</b><div class="progress"><i id="homeRoutineBar"></i></div></div><div class="pct" id="homeRoutinePct">0%</div></div><div class="metric glass"><div class="ico">📖</div><div><b>독서 프로젝트</b><div class="progress"><i id="homeReadBar"></i></div><small class="reading-stage-label" id="homeReadingStage">0/100권 · 0P</small></div><div class="pct" id="homeReadPct">0%</div></div><div class="metric glass"><div class="ico">⭐</div><div><b>특별 미션</b><div class="progress"><i id="homeMissionBar"></i></div></div><div class="pct" id="homeMissionPct">0%</div></div><div class="metric glass"><div class="ico">👑</div><div><b>나의 레벨</b><div class="progress"><i id="homeLevelBar"></i></div></div><div class="pct" id="homeLevelPct">0%</div></div></div></section>
+<section id="routine" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">오늘의 학습루틴</h1>
+    <div class="learning-intro glass">오늘 선택한 학습만 한 번에 하나씩 보여줘요. 건너뛴 활동은 마지막에 다시 나와요.</div>
+    <div class="encourage" id="routineEncourage">결과보다 다시 생각하고 끝까지 해본 과정이 더 멋져!</div>
+
+    <div class="routine-summary-strip glass">
+      <div><small>오늘 완료</small><strong id="routineDoneCount">0개</strong></div>
+      <div><small>오늘 획득</small><strong id="routineEarned">0P</strong></div>
+      <div><small>오늘 선택</small><strong id="routinePeriodLabel">0개</strong></div>
+      <button class="btn soft" onclick="openRoutineResult()">👑 오늘의 결과</button>
+    </div>
+
+    <div class="routine-workspace">
+      <aside class="routine-side-list glass">
+        <div class="side-list-heading"><span>📋</span><b>오늘의 학습 목록</b></div>
+        <div class="routine-overview vertical-overview" id="routineOverview"></div>
+      </aside>
+
+      <div class="routine-main-panel glass magic-notebook-panel">
+      <div class="notebook-binding" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="notebook-stamp">TODAY</div>
+      <div class="focus" id="routineFocus"></div>
+      <div class="routine-character-stage">
+        <img class="routine-task-character" src="assets/diana_running.png" alt="화이팅하며 뛰는 다이애나">
+      </div>
+      <div class="dots" id="routineDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="brain" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">PROJECT LUNA 두뇌루틴</h1>
+    <div class="learning-intro glass">감각과 작업기억·처리속도·시지각·추론을 키우는 짧은 루틴이에요.</div>
+    <div class="encourage">끝까지 생각하고 다시 시도한 과정이 가장 멋져!</div>
+    <div class="routine-summary-strip glass">
+      <div><small>오늘 완료</small><strong id="brainDoneCount">0개</strong></div>
+      <div><small>오늘 EXP</small><strong id="brainEarned">0 EXP</strong></div>
+      <div><small>선택 활동</small><strong id="brainSelectedCount">0개</strong></div>
+      <button class="btn soft" onclick="openBrainResult()">💎 성장 결과</button>
+    </div>
+    <div class="routine-workspace">
+      <aside class="routine-side-list glass brain-side-list">
+        <div class="side-list-heading"><span>🧠</span><b>오늘의 두뇌 목록</b></div>
+        <div class="routine-overview vertical-overview" id="brainOverview"></div>
+      </aside>
+      <div class="routine-main-panel glass magic-notebook-panel brain-notebook">
+      <div class="notebook-binding" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="notebook-stamp">BRAIN UP</div>
+      <div class="focus" id="brainFocus"></div>
+      <div class="routine-character-stage"><img class="routine-task-character" src="assets/diana_running.png" alt="화이팅하며 뛰는 다이애나"></div>
+      <div class="dots" id="brainDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habits" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">매일 생활루틴</h1>
+    <div class="tabs" id="habitPeriodTabs"></div><div class="encourage" id="habitEncourage">작은 습관 하나가 멋진 하루를 만들어요.</div>
+
+    <div class="habit-summary-strip glass">
+      <div><small>오늘 완료</small><strong id="habitDoneCount">0개</strong></div>
+      <div><small>오늘 획득</small><strong id="habitEarned">0P</strong></div>
+      <div><small>나중에 하기</small><strong id="habitSkippedCount">0개</strong></div>
+      <button class="btn soft" onclick="openHabitResult()">👑 오늘의 결과</button>
+    </div>
+
+    <div class="routine-workspace habit-workspace">
+      <aside class="routine-side-list glass habit-side-list">
+        <div class="side-list-heading"><span>🌱</span><b>지금 시간의 생활습관</b></div>
+        <div class="habit-overview vertical-overview" id="habitOverview"></div>
+      </aside>
+
+      <div class="habit-main-panel glass magic-notebook-panel habit-notebook">
+      <div class="notebook-binding" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="notebook-stamp">HABIT</div>
+      <div class="focus" id="habitFocus"></div>
+      <div class="habit-character-stage"><img class="habit-task-character" src="assets/diana_idle.png" alt="생활루틴을 응원하는 다이애나"></div>
+      <div class="dots" id="habitDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="reading" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">독서 프로젝트</h1>
+
+    <div class="reading-summary-strip glass">
+      <div class="reading-summary-item">
+        <span class="summary-icon">💎</span>
+        <span><small>독서 보석</small><strong><span id="gemCount">0</span>개</strong></span>
+      </div>
+      <div class="reading-summary-item">
+        <span class="summary-icon">🔄</span>
+        <span><small>교환 기준</small><strong id="gemRuleText">보석 10개 → 120P</strong></span>
+      </div>
+      <div class="reading-summary-item">
+        <span class="book-picture korean-book">가</span>
+        <span><small>한글책</small><strong id="koreanBookCount">0권</strong></span>
+      </div>
+      <div class="reading-summary-item">
+        <span class="book-picture english-book">ABC</span>
+        <span><small>영어책</small><strong id="englishBookCount">0권</strong></span>
+      </div>
+      <button class="btn gold reading-exchange-btn" onclick="exchangeGems()">보석 교환</button>
+    </div>
+
+    <div class="reading-main-grid">
+      <div class="panel glass card reading-record-panel">
+        <h2>오늘 읽은 책 기록</h2>
+        <div class="form">
+          <select id="bookLang">
+            <option value="한글">📕 가나다 · 한글책</option>
+            <option value="영어">📘 ABC · 영어책</option>
+          </select>
+          <input id="bookTitle" placeholder="책 제목">
+          <select id="bookType"></select>
+          <select id="bookActivity"></select>
+          <button class="btn" onclick="addBook()">📚 책 기록 저장</button>
+        </div>
+        <div class="reading-character-stage reading-scene-stage">
+         <div class="reading-scene-glow"></div>
+         <img src="assets/reading_scene.jpg" alt="다이애나와 루비의 독서 장면">
+       </div>
+      </div>
+
+      <div class="panel glass card reading-album-panel">
+        <h2>독서 앨범</h2>
+        <div id="bookList" class="list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="mission" class="scene"><img class="scene-character" src="assets/diana_brain.png" alt="마법을 부리는 다이애나"><div class="content"><h1 class="title screen-title">오늘의 특별미션</h1><div class="panel glass card"><p style="text-align:center;font-weight:900">10장 중 마음이 끌리는 카드 한 장을 골라 뒤집어 보세요.</p><div id="missionCards" class="cards10"></div><div id="missionResult" style="text-align:center;margin-top:12px"></div></div></div></section>
+<section id="map" class="scene">
+  <div class="content">
+    <div class="world-map-screen">
+      <div class="world-map-head">
+        <strong>📚 천 권 독서 대모험</strong>
+        <div><span id="worldBookCount">0 / 1,000권</span></div>
+        <div class="progress"><i id="worldTotalBar"></i></div>
+        <small id="mapText">책 100권마다 새로운 지역이 열려요. 보석은 포인트 교환용이에요.</small>
+      </div>
+      <div id="mapHotspots"></div>
+      
+      <div class="map-legend">
+        <b>✨ 지도 사용법</b><br>
+        빛나는 지역을 눌러 이야기를 확인해요.<br>
+        회색 지역은 목표 권수를 채우면 열려요.
+      </div>
+    </div>
+  </div>
+</section>
+<section id="album" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">독서 기록 통장</h1>
+    <div class="magic-ledger album-ledger">
+      <div class="ledger-page ledger-illustration-page">
+        <div class="ledger-picture"><img src="assets/reading_scene.jpg" alt="다이애나와 루비 독서 장면"></div>
+        <p>✨ 책과 함께 자라는 마법의 기록장</p>
+      </div>
+      <div class="ledger-rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ledger-page ledger-record-page">
+        <div id="albumList" class="list ledger-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="bank" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">🌙 달빛은행</h1>
+    <div class="magic-ledger bank-ledger">
+      <div class="ledger-page bank-summary-page">
+        <div class="bank-emblem">🌙</div>
+        <div class="side-summary">
+          <div class="mini">🪙 성장 포인트<strong id="bankPoints">0P</strong></div>
+          <div class="mini">💰 용돈 통장<strong id="bankMoney">0원</strong></div>
+          <div class="mini">💎 독서 보석<strong id="bankGems">0개</strong></div>
+          <div class="mini">오늘 포인트 적립<strong id="bankToday">0P</strong></div>
+        </div>
+        <p class="bank-message">오늘 모은 반짝임이 달빛 통장에 차곡차곡 쌓였어요.</p>
+      </div>
+      <div class="ledger-rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ledger-page bank-history-page">
+        <div class="bank-tabs"><button id="pointLedgerTab" class="active" onclick="switchBankTab('point')">🪙 포인트 통장</button><button id="moneyLedgerTab" onclick="switchBankTab('money')">💰 용돈 통장</button></div>
+        <div id="pointLedgerPane" class="ledger-pane active"><h2>포인트 거래내역</h2><div id="ledger" class="list ledger-list"></div></div>
+        <div id="moneyLedgerPane" class="ledger-pane"><h2>용돈 기록</h2><div class="money-actions"><input id="moneyMemo" placeholder="내용 예: 용돈, 문구점"><input id="moneyAmount" type="number" min="0" placeholder="금액"><button class="btn gold" onclick="recordMoney('deposit')">입금</button><button class="btn pink" onclick="recordMoney('spend')">사용</button></div><div id="moneyLedger" class="list ledger-list"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="shop" class="scene"><div class="content"><h1 class="title screen-title">포인트 상점</h1><div class="panel glass card"><div id="shopGrid" class="shopgrid"></div></div></div></section>
+<section id="stats" class="scene">
+  <div class="content">
+    <h1 class="title screen-title">성장 통계</h1>
+    <div class="panel glass card stats-main-card">
+      <div class="statgrid">
+        <div class="statbox">루틴 완료<strong id="statRoutine">0회</strong></div>
+        <div class="statbox">생활습관 완료<strong id="statHabits">0회</strong></div>
+        <div class="statbox">읽은 책<strong id="statBooks">0권</strong></div>
+        <div class="statbox">특별미션<strong id="statMission">0회</strong></div>
+        <div class="statbox">획득 포인트<strong id="statPoints">0P</strong></div>
+        <div class="statbox">용돈 잔액<strong id="statMoney">0원</strong></div>
+      </div>
+      <div class="diary-stat-section parent-memo-stat-section">
+        <h2>📝 엄마의 실사용 메모</h2>
+        <div id="parentMemoStatsList" class="diary-stats-list"></div>
+      </div>
+      <div class="diary-stat-section">
+        <h2>🌙 최근 달빛일기</h2>
+        <div id="diaryStatsList" class="diary-stats-list"></div>
+      </div>
+      <div class="print-actions"><button class="btn gold" onclick="printGrowthReport()">🖨️ 성장 리포트 PDF·인쇄</button></div>
+      <p class="smallnote" style="text-align:center">버튼을 누른 뒤 인쇄 창에서 ‘PDF로 저장’을 선택할 수 있어요.</p>
+    </div>
+  </div>
+</section>
+<section id="settings" class="scene"><div class="content"><h1 class="title screen-title">부모 설정</h1><div id="pinGate" class="panel glass card pinbox"><div style="font-size:66px">🔐</div><h2>부모 PIN</h2><input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="4자리 PIN" style="padding:11px;border-radius:11px;border:1px solid #d5c6dc;text-align:center;font-size:21px"><br><br><button class="btn" onclick="unlockSettings()">열기</button></div><div id="settingsBody" class="settings-layout" style="display:none"><div class="setting-tabs glass card" id="settingTabs"></div><div class="panel glass card" id="settingContent"></div></div></div></section>
+
+<div id="worldRegionScene" class="world-region-scene" aria-hidden="true">
+  <div class="region-zoom-bg"></div>
+  <div class="region-light-door"><span></span></div>
+  <div class="region-sparkles" aria-hidden="true">✦　✧　✦　✧　✦</div>
+  <button type="button" class="region-back-button" onclick="closeWorldRegion()">← 지도로 돌아가기</button>
+  <div class="region-adventure-card">
+    <div id="worldRegionIcon" class="world-region-icon">☁️</div>
+    <small id="worldRegionNumber">REGION 01</small>
+    <h1 id="worldRegionTitle">구름의 아카데미</h1>
+    <p id="worldRegionStory"></p>
+    <div class="region-progress"><i id="worldRegionBar"></i></div>
+    <b id="worldRegionProgress"></b>
+    <div id="worldRegionReward" class="region-reward"></div>
+    <div class="region-npc-line"><span>🦄</span><p>루비와 함께 다음 이야기를 찾아볼까요?</p></div>
+    <button class="btn gold" onclick="closeWorldRegion()">탐험을 마치고 지도로</button>
+  </div>
+</div>
+
+<nav class="nav" id="nav"></nav><div class="toast" id="toast"></div><div class="modal" id="modal"><div class="modalbox" id="modalBox"></div></div></main></div>
+<script>
+const KEY='projectLunaFinalStable';
+const defaults={points:0,level:1,gems:0,money:0,moneyLedger:[],bonusDate:'',books:[],ledger:[],mission:{date:'',choice:null,done:false,pending:false},moods:{morning:{},evening:{}},routineDone:{date:'',items:[],skipped:[]},brainDone:{date:'',items:[],skipped:[]},brainExp:{},moonDiary:{},parentMemos:[],shopRequests:[],habitDone:{date:'',morning:{items:[],skipped:[]},after:{items:[],skipped:[]},evening:{items:[],skipped:[]}},settings:{pin:'1234',appTitle:'다이애나의 비밀도서관',appSubtitle:'마법과 지혜가 자라는 곳',sound:true,bgm:true,surprisePoint:20,routinePoint:10,bookPoint:10,activityPoint:50,gemGoal:10,gemExchange:120,koGoal:1000,enGoal:1000,worldStep:100,learning:[
+'수학 연산|➕|10분|수학|ON',
+'사고력 수학|🧩|10분|수학|ON',
+'국어 읽기|📖|15분|국어|ON',
+'받아쓰기|✍️|10분|국어|OFF',
+'한자 쓰기|📝|10분|한자|OFF',
+'Bricks Reading|🔤|15분|영어|ON',
+'영어책 읽기|📘|10분|영어|ON',
+'학교 숙제|🎒|15분|숙제|ON',
+'피아노 연습|🎹|10분|예체능|OFF',
+'과학·미술 활동|🔬|15분|창의|OFF'
+],
+brainRoutine:[
+'숫자 기억하기|🔢|5분|작업기억|ON',
+'거꾸로 따라 말하기|↩️|5분|작업기억|ON',
+'연산 스피드|⚡|5분|처리속도|ON',
+'빠르게 같은 그림 찾기|👀|5분|처리속도|ON',
+'틀린그림 찾기|🔍|10분|시지각|ON',
+'숨은그림 찾기|🖼️|10분|시지각|ON',
+'사고력 퍼즐|💡|10분|추론|ON',
+'리듬 따라 하기|🎵|5분|청각기억|OFF',
+'양손 협응 놀이|🤲|5분|협응|OFF',
+'균형·감각 놀이|🤸|5분|감각통합|OFF'
+],
+brainExpPerTask:20,brainLevelExp:100,brainLevelGem:1,
+moonDiarySteps:[
+{title:'오늘 있었던 일',question:'오늘 나는 무엇을 했나요?',options:['📚 책을 읽었어요','🧮 공부를 했어요','🧩 어려운 문제를 풀었어요','🏫 학교에서 친구들과 지냈어요','🎨 만들기나 그림을 했어요','👨‍👩‍👧 가족과 즐겁게 보냈어요','✨ 새로운 일을 해봤어요']},
+{title:'그때 느낀 점',question:'그때 나는 어떻게 느꼈나요?',options:['😊 즐거웠어요','🥰 뿌듯했어요','💪 용기가 났어요','😌 편안했어요','🤔 조금 어려웠어요','😢 속상했어요','😅 긴장됐어요','✨ 새로운 것을 알게 되었어요']},
+{title:'내가 잘한 점',question:'오늘 내가 잘한 것은 무엇인가요?',options:['끝까지 해봤어요','다시 도전했어요','천천히 생각했어요','도움을 요청했어요','친절하게 말했어요','스스로 준비했어요','약속을 지켰어요','실수해도 포기하지 않았어요']},
+{title:'내일의 선택',question:'내일은 무엇을 해보고 싶나요?',options:['조금 더 집중해 볼래요','어려운 것도 다시 해볼래요','책을 한 권 더 읽을래요','먼저 준비해 볼래요','따뜻하게 말할래요','즐겁게 쉬면서 힘을 채울래요']}
+],
+morningCheckQuestion:'오늘 아침, 내 마음과 몸은 어때요?',
+morningCheckOptions:['😊 기분 좋고 힘이 있어요','😌 편안하고 차분해요','😴 조금 피곤해요','😟 걱정되는 일이 있어요','😠 마음이 답답해요','🤗 오늘이 기대돼요'],
+moonDiaryFreePrompt:'오늘 하고 싶은 말을 한 줄로 적어도 좋아요.',moonDiaryRewardPoint:20,autoBackup:true,backupRetention:14,lastBackupDate:'',parentMemoPrompt:'오늘 아이가 즐거워한 점, 어려워한 점, 다음에 바꾸고 싶은 점을 기록해 주세요.',
+moonDiaryClosing:['오늘의 이야기를 차근차근 완성했구나. 정말 멋져!','네가 느낀 모든 마음은 소중해. 오늘도 잘했어!','오늘의 반짝이는 순간이 달빛일기에 저장됐어!'],
+morningHabits:['물 마시기|💧|2분','영양제·요거트 챙기기|🥛|3분','세수·양치하기|🪥|7분','옷 입기|👗|5분','읽을 책 챙기기|📚|2분','이불 정리하기|🛏️|3분','주변 정리하기|✨|3분'],afterHabits:['물병 정리하기|🧴|2분','연필 깎기|✏️|3분','가방 정리하기|🎒|5분','샤워하기|🛁|10분','옷을 빨래통에 넣기|🧺|2분'],eveningHabits:['주변 정리하기|✨|5분','내일 옷·준비물 챙기기|🗓️|5분','책가방 확인하기|🎒|3분','양치하기|🪥|5분','감사한 일 한 가지 떠올리기|💛|2분','취침 준비하기|🌙|5분'],missions:['기억 장면 그리기','새로운 단어 3개','가족에게 줄거리 이야기','기억 장면 한 줄','모르는 내용 질문하기','럭키 2배 미션','어려운 책 끝까지 읽기','오늘 많이 웃기','가족에게 고마운 점 말하기','보너스 50P'],missionPoint:50,missionApprovalRequired:true,additionalActivities:[['none','추가 활동 없음',0],['review','느낀점 쓰기',50],['quiz','책 퀴즈 만들기',50],['scene','기억 장면 그리기',50],['words','새로운 단어 3개',50],['family','가족에게 줄거리 이야기',50],['readline','기억에 남는 글 읽어주기',50]],morningMoodPrompt:'오늘 아침 기분은 어때?',eveningReflectionPrompt:'오늘 가장 반짝였던 순간은 무엇이었어?',gratitudePrompt:'오늘 고마웠던 일은 무엇이야?',tomorrowPrompt:'내일 해보고 싶은 것은 무엇이야?',closingMessages:['오늘도 정말 수고했어. 네가 해낸 모든 순간이 소중해.','오늘도 한 걸음 성장했어. 편안하게 쉬어도 괜찮아.','오늘의 반짝이는 순간을 기억하며 멋지게 마무리하자!'],rubyMessages:['오늘도 네가 빛나는 하루가 되길 응원해! ✨','천천히 해도 괜찮아. 나는 언제나 네 편이야.','끝까지 생각한 네 모습이 정말 멋져!','오늘도 한 걸음 성장했어. 내일은 더 멋진 모험이 기다리고 있어!','실수는 배우는 과정이야. 다시 시작한 네가 자랑스러워.'],bookCategories:[['normal','일반책',0],['readAloud','한글 음독',10],['leaf','잠수 나뭇잎책',300],['chapter','문고판',500]],shop:[['엄마와 10분 놀이',200,'🎲'],['원하는 책 1권',500,'📕'],['주말 간식 선택권',300,'🍰'],['공주 스티커',150,'👑'],['가족 영화 선택권',600,'🎬'],['특별 외출',1000,'🎡']]}};
+function storageGet(){try{return localStorage.getItem(KEY)||'{}'}catch(e){return '{}'}}
+function storageSet(value){try{localStorage.setItem(KEY,value)}catch(e){}}
+function storageRemove(){try{localStorage.removeItem(KEY)}catch(e){}}
+let state=deepMerge(defaults,JSON.parse(storageGet()));let period='morning',settingTab='approvalSet';
+(function migrateWiscState(){
+  if(!state.routineDone||!Array.isArray(state.routineDone.items))state.routineDone={date:'',items:[],skipped:[]};
+  if(!Array.isArray(state.routineDone.skipped))state.routineDone.skipped=[];
+  const old=state.habitDone||{};
+  state.habitDone={date:old.date||'',morning:old.morning||{items:[],skipped:[]},after:old.after||{items:[],skipped:[]},evening:old.evening||{items:[],skipped:[]}};
+  ['morning','after','evening'].forEach(k=>{
+    if(!state.habitDone[k]||!Array.isArray(state.habitDone[k].items))state.habitDone[k]={items:[],skipped:[]};
+    if(!Array.isArray(state.habitDone[k].skipped))state.habitDone[k].skipped=[];
+  });
+  if(!Array.isArray(state.settings.learning))state.settings.learning=defaults.settings.learning.slice();
+if(!Array.isArray(state.settings.brainRoutine))state.settings.brainRoutine=defaults.settings.brainRoutine.slice();
+if(!state.brainDone||!Array.isArray(state.brainDone.items))state.brainDone={date:'',items:[],skipped:[]};
+if(!Array.isArray(state.brainDone.skipped))state.brainDone.skipped=[];
+if(!state.brainExp||typeof state.brainExp!=='object')state.brainExp={};
+if(!state.moonDiary||typeof state.moonDiary!=='object')state.moonDiary={};
+if(!Array.isArray(state.parentMemos))state.parentMemos=[];
+if(!state.settings.parentMemoPrompt)state.settings.parentMemoPrompt=defaults.settings.parentMemoPrompt;
+
+if(!Array.isArray(state.shopRequests))state.shopRequests=[];
+if(!Array.isArray(state.settings.moonDiarySteps))state.settings.moonDiarySteps=defaults.settings.moonDiarySteps.slice();
+if(!state.settings.moonDiaryFreePrompt)state.settings.moonDiaryFreePrompt=defaults.settings.moonDiaryFreePrompt;
+if(typeof state.settings.autoBackup!=='boolean')state.settings.autoBackup=true;
+if(!Number.isFinite(Number(state.settings.backupRetention)))state.settings.backupRetention=14;
+if(!state.settings.lastBackupDate)state.settings.lastBackupDate='';
+
+if(!Array.isArray(state.settings.morningCheckOptions))state.settings.morningCheckOptions=defaults.settings.morningCheckOptions.slice();
+if(!state.settings.morningCheckQuestion)state.settings.morningCheckQuestion=defaults.settings.morningCheckQuestion;
+
+
+  if(!Array.isArray(state.settings.morningHabits))state.settings.morningHabits=defaults.settings.morningHabits.slice();
+  if(!Array.isArray(state.settings.afterHabits))state.settings.afterHabits=defaults.settings.afterHabits.slice();
+  if(!Array.isArray(state.settings.eveningHabits))state.settings.eveningHabits=defaults.settings.eveningHabits.slice();
+})();
+function deepMerge(a,b){if(Array.isArray(a))return b||a;const o={...a};for(const k in b||{})o[k]=(a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))?deepMerge(a[k],b[k]):b[k];return o}
+function today(){return new Date().toISOString().slice(0,10)}function save(){storageSet(JSON.stringify(state));renderAll()}function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1400)}function openModal(h){document.getElementById('modalBox').innerHTML=h;document.getElementById('modal').classList.add('show')}function closeModal(){document.getElementById('modal').classList.remove('show')}document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
+function ensureDay(){const d=today();if(state.routineDone.date!==d)state.routineDone={date:d,items:[],skipped:[]};if(state.brainDone.date!==d)state.brainDone={date:d,items:[],skipped:[]};if(state.habitDone.date!==d)state.habitDone={date:d,morning:{items:[],skipped:[]},after:{items:[],skipped:[]},evening:{items:[],skipped:[]}};if(state.mission.date!==d)state.mission={date:d,choice:null,done:false,pending:false}}
+function parseRows(arr){return (arr||[]).map(x=>{const [name,icon='✨',time='']=(x||'').split('|');return{name,icon,time}}).filter(x=>x.name)}
+function parseLearning(arr){return (arr||[]).map((x,sourceIndex)=>{const [name,icon='🧠',time='10분',domain='두뇌',active='ON']=(x||'').split('|');return{name,icon,time,domain,active:String(active).toUpperCase()!=='OFF',sourceIndex}}).filter(x=>x.name)}function addPoints(n,memo){state.points+=n;state.ledger.unshift({date:today(),amount:n,memo});save()}
+const navItems=[['home','🏠','홈'],['routine','📚','학습루틴'],['brain','🧠','두뇌루틴'],['habits','🏠','생활루틴'],['reading','📚','독서'],['mission','🎴','특별미션'],['map','🗺️','세계관'],['album','📖','독서앨범'],['bank','🏦','달빛은행'],['shop','🏪','포인트상점'],['stats','📈','통계'],['settings','⚙️','설정']];function buildNav(){nav.innerHTML=navItems.map(([id,i,l])=>`<button data-id="${id}" onclick="showScene('${id}')"><span>${i}</span>${l}</button>`).join('')}function showScene(id){document.querySelectorAll('.scene').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(id==='settings'){pinGate.style.display='block';settingsBody.style.display='none';pinInput.value=''}}
+function renderHome(){const all=[...parseRows(state.settings.morningHabits),...parseRows(state.settings.afterHabits),...parseRows(state.settings.eveningHabits)].length,done=state.habitDone.morning.items.length+state.habitDone.after.items.length+state.habitDone.evening.items.length,rp=Math.round(done/all*100)||0,read=Math.min(100,Math.round(state.books.length/(state.settings.koGoal+state.settings.enGoal)*100)),mp=state.mission.done?100:0,level=Math.floor(state.points/500)+1,levelPct=state.points%500/5;state.level=level;homePoints.textContent=state.points.toLocaleString();homeGems.textContent=state.gems;homeLevel.textContent='Lv. '+level;levelBar.style.width=levelPct+'%';nextLevelText.textContent=`다음 레벨까지 ${500-(state.points%500)}P`;homeRoutinePct.textContent=rp+'%';homeRoutineBar.style.width=rp+'%';const totalBooks=state.books.length,stageIn=Math.min(100,totalBooks%100|| (totalBooks>0?100:0)),stagePct=totalBooks>=1000?100:(totalBooks%100),readingPoints=state.books.reduce((sum,b)=>sum+(Number(b.points)||0),0);homeReadPct.textContent=(totalBooks>=1000?100:stagePct)+'%';homeReadBar.style.width=(totalBooks>=1000?100:stagePct)+'%';homeReadingStage.textContent=`${totalBooks>=1000?100:totalBooks%100}/100권 · ${readingPoints.toLocaleString()}P`;homeMissionPct.textContent=mp+'%';homeMissionBar.style.width=mp+'%';homeLevelPct.textContent=Math.round(levelPct)+'%';homeLevelBar.style.width=levelPct+'%';appTitle.textContent=state.settings.appTitle;appSubtitle.textContent=state.settings.appSubtitle;const rubyList=state.settings.rubyMessages&&state.settings.rubyMessages.length?state.settings.rubyMessages:['오늘도 네가 빛나는 하루가 되길 응원해! ✨'];rubyMessage.textContent=rubyList[(new Date().getDate()-1)%rubyList.length];dailyBonus.style.display=state.bonusDate===today()?'none':'block';dailyBonus.textContent=`🎁 오늘의 서프라이즈 +${state.settings.surprisePoint}P`;
+    const todayReflection=state.moods.evening[today()];
+    if(todayReflection){
+      const list=state.settings.closingMessages||['오늘도 정말 수고했어.'];
+      dayCloseBanner.textContent='🌙 '+list[(new Date().getDate()-1)%list.length];
+      dayCloseBanner.style.display='block';
+    }else{
+      dayCloseBanner.style.display='none';
+    }}
+dailyBonus.onclick=()=>{if(state.bonusDate===today())return;state.bonusDate=today();addPoints(state.settings.surprisePoint,'오늘의 서프라이즈');toast('✨ 응원 보너스를 받았어요!')};
+function renderRoutine(){
+  const list=parseLearning(state.settings.learning).filter(x=>x.active);
+  const done=state.routineDone.items;
+  const skipped=(state.routineDone.skipped||[]).filter(i=>!done.includes(i)&&list.some(x=>x.sourceIndex===i));
+  state.routineDone.skipped=skipped;
+  const fresh=list.filter(x=>!done.includes(x.sourceIndex)&&!skipped.includes(x.sourceIndex));
+  const current=fresh.length?fresh[0]:(skipped.length?list.find(x=>x.sourceIndex===skipped[0]):null);
+  routineDoneCount.textContent=done.filter(i=>list.some(x=>x.sourceIndex===i)).length+'개';
+  routineEarned.textContent=(done.filter(i=>list.some(x=>x.sourceIndex===i)).length*state.settings.routinePoint)+'P';
+  routinePeriodLabel.textContent=list.length+'개';
+  routineOverview.innerHTML=list.map(x=>{const i=x.sourceIndex,cls=done.includes(i)?'done':skipped.includes(i)?'skipped':current&&i===current.sourceIndex?'current':'';const mark=done.includes(i)?'✓':skipped.includes(i)?'↺':current&&i===current.sourceIndex?'●':'○';return `<div class="routine-chip ${cls}"><span>${mark}</span><span>${x.icon} ${esc(x.name)}</span><em>${esc(x.domain)}</em></div>`}).join('');
+  routineDots.textContent=list.map(x=>done.includes(x.sourceIndex)?'●':skipped.includes(x.sourceIndex)?'↺':current&&x.sourceIndex===current.sourceIndex?'◉':'○').join(' ');
+  if(!list.length){routineFocus.innerHTML='<div class="focus-card" style="display:grid;place-items:center;text-align:center"><div><div class="focus-icon">🧠</div><h2>오늘 선택된 학습루틴이 없어요.</h2><p>부모 설정에서 오늘 할 활동을 ON으로 골라 주세요.</p></div></div>';return;}
+  if(!current){routineFocus.innerHTML='<div class="focus-card" style="display:grid;place-items:center;text-align:center"><div><div class="focus-icon">👑</div><h2>오늘 선택한 학습루틴을 모두 완료했어요!</h2><p>끝까지 생각하고 다시 시도한 과정이 가장 멋졌어요.</p></div></div>';return;}
+  const isRepeat=skipped.includes(current.sourceIndex);
+  routineFocus.innerHTML=`<div class="focus-card"><div class="routine-task-number">${list.findIndex(x=>x.sourceIndex===current.sourceIndex)+1} / ${list.length} ${isRepeat?'· 다시 도전':''}</div><h2 class="routine-task-title">${current.icon} ${esc(current.name)}</h2><div class="routine-task-meta">${esc(current.domain)} · ${esc(current.time)} · +${state.settings.routinePoint}P</div>${isRepeat?'<div class="habit-repeat-note">아까 미뤄둔 활동이에요. 부담 없이 짧게 다시 해볼까요?</div>':''}<div class="focus-actions"><button class="btn soft" onclick="startLearningTimer('${esc(current.time)}','${esc(current.name)}')">시작하기</button><button class="btn pink" onclick="completeRoutine(${current.sourceIndex})">완료했어요</button><button class="btn soft" onclick="skipRoutine(${current.sourceIndex})">나중에 할래요</button></div></div>`;
+}
+const processPraise=['끝까지 생각했구나. 정말 멋져!','다른 방법도 찾아봤네!','천천히 해도 괜찮아. 오늘도 성장했어!','실수해도 다시 시도한 게 가장 멋졌어!','집중해서 마무리한 네 노력이 자랑스러워!'];
+function completeRoutine(i){i=Number(i);if(!state.routineDone.items.includes(i)){state.routineDone.items.push(i);state.routineDone.skipped=(state.routineDone.skipped||[]).filter(x=>x!==i);addPoints(state.settings.routinePoint,'학습루틴 완료');playSound('success');sparkleBurst();toast('✨ '+processPraise[Math.floor(Math.random()*processPraise.length)]);}}
+function skipRoutine(i){i=Number(i);if(state.routineDone.items.includes(i))return;state.routineDone.skipped=(state.routineDone.skipped||[]).filter(x=>x!==i);state.routineDone.skipped.push(i);save();toast('↺ 마지막에 부담 없이 다시 보여줄게요.');}
+let learningTimerId=null;
+function startLearningTimer(timeText,name){const mins=Math.max(1,parseInt(timeText)||5);let seconds=mins*60;clearInterval(learningTimerId);openModal(`<h2>⏱️ ${esc(name)}</h2><div id="learningTimerDisplay" style="font-size:54px;font-weight:950;color:#6c49a2">${mins}:00</div><p>짧게 집중하고, 끝나면 충분히 쉬어도 괜찮아요.</p><button class="btn soft" onclick="clearInterval(learningTimerId);closeModal()">타이머 닫기</button>`);learningTimerId=setInterval(()=>{seconds--;const el=document.getElementById('learningTimerDisplay');if(el)el.textContent=`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;if(seconds<=0){clearInterval(learningTimerId);playSound('success');sparkleBurst();toast('⏰ 집중 시간이 끝났어요!');}},1000);}
+function openRoutineResult(){const selected=parseLearning(state.settings.learning).filter(x=>x.active),n=state.routineDone.items.filter(i=>selected.some(x=>x.sourceIndex===i)).length;openModal(`<h2>🧠 오늘의 학습루틴</h2><p>선택 ${selected.length}개 · 완료 ${n}개</p><p>획득 ${n*state.settings.routinePoint}P</p><p>결과보다 노력·재시도·집중 과정을 칭찬해 주세요.</p><button class="btn" onclick="closeModal()">확인</button>`);}
+function renderHabits(){
+  const tabs=[['morning','🌞 아침'],['after','🏫 하교 후'],['evening','🌙 저녁']];
+  habitPeriodTabs.innerHTML=tabs.map(([id,label])=>`<button class="${period===id?'active':''}" onclick="period='${id}';renderHabits()">${label}</button>`).join('');
+  const messages={morning:'아침 준비를 하나씩 끝내면 하루가 편안해져요.',after:'집에 돌아온 뒤 정리하면 내일이 쉬워져요.',evening:'오늘을 정리하고 편안하게 쉬어볼까요?'};
+  habitEncourage.textContent=messages[period];
+  const key=period==='morning'?'morningHabits':period==='after'?'afterHabits':'eveningHabits';
+  const list=parseRows(state.settings[key]),bucket=state.habitDone[period],done=bucket.items;
+  const skipped=(bucket.skipped||[]).filter(i=>!done.includes(i)&&i>=0&&i<list.length);bucket.skipped=skipped;
+  const fresh=list.map((_,i)=>i).filter(i=>!done.includes(i)&&!skipped.includes(i));
+  const idx=fresh.length?fresh[0]:(skipped.length?skipped[0]:-1);
+  habitDoneCount.textContent=done.length+'개';habitEarned.textContent=(done.length*state.settings.routinePoint)+'P';habitSkippedCount.textContent=skipped.length+'개';
+  habitOverview.innerHTML=list.map((x,i)=>{const cls=done.includes(i)?'done':skipped.includes(i)?'skipped':i===idx?'current':'';const mark=done.includes(i)?'✓':skipped.includes(i)?'↺':i===idx?'●':'○';return `<div class="habit-chip ${cls}"><span>${mark}</span><span>${x.icon} ${esc(x.name)}</span></div>`}).join('');
+  habitDots.textContent=list.map((_,i)=>done.includes(i)?'●':skipped.includes(i)?'↺':i===idx?'◉':'○').join(' ');
+  if(idx<0){habitFocus.innerHTML=`<div class="focus-card" style="display:grid;place-items:center;text-align:center"><div><div class="focus-icon">🌟</div><h2>${tabs.find(x=>x[0]===period)[1]} 생활루틴을 모두 완료했어요!</h2><p>매일 반복한 작은 습관이 스스로 하는 힘이 돼요.</p></div></div><div class="habit-character-stage"><img class="habit-task-character" src="assets/diana_running.png" alt="다이애나"></div>`;return;}
+  const x=list[idx],isRepeat=skipped.includes(idx);
+  habitFocus.innerHTML=`<div class="focus-card"><div class="habit-task-number">${idx+1} / ${list.length} ${isRepeat?'· 다시 하기':''}</div><h2 class="habit-task-title">${x.icon} ${esc(x.name)}</h2><div class="habit-task-meta">${esc(x.time)} · 매일 꼭 하는 생활습관 · +${state.settings.routinePoint}P</div>${isRepeat?'<div class="habit-repeat-note">아까 미뤄둔 일이에요. 오늘 안에 다시 해볼까요?</div>':''}<div class="focus-actions"><button class="btn pink" onclick="completeHabit(${idx})">완료했어요</button><button class="btn soft" onclick="skipHabit(${idx})">잠깐 미룰래요</button></div></div><div class="habit-character-stage"><img class="habit-task-character" src="assets/diana_running.png" alt="다이애나"></div>`;
+}
+function completeHabit(i){i=Number(i);const bucket=state.habitDone[period];if(!bucket.items.includes(i)){bucket.items.push(i);bucket.skipped=(bucket.skipped||[]).filter(x=>x!==i);addPoints(state.settings.routinePoint,`${period} 생활루틴 완료`);playSound('success');sparkleBurst();toast('🌱 매일 하는 힘이 자라고 있어요!');}}
+function skipHabit(i){i=Number(i);const bucket=state.habitDone[period];if(bucket.items.includes(i))return;bucket.skipped=(bucket.skipped||[]).filter(x=>x!==i);bucket.skipped.push(i);save();toast('↺ 오늘 안에 다시 보여줄게요.');}
+function openHabitResult(){const total=['morning','after','evening'].reduce((sum,k)=>sum+parseRows(state.settings[k==='morning'?'morningHabits':k==='after'?'afterHabits':'eveningHabits']).length,0);const done=['morning','after','evening'].reduce((sum,k)=>sum+state.habitDone[k].items.length,0);openModal(`<h2>🏠 오늘의 생활루틴</h2><p>${done}/${total} 완료</p><p>생활습관은 매일 반복하며 스스로 하는 힘을 키워요.</p><button class="btn" onclick="closeModal()">확인</button>`);}
+function renderAdditionalActivities(){const acts=state.settings.additionalActivities||[['none','추가 활동 없음',0]];bookActivity.innerHTML=acts.map(([id,name,points])=>`<option value="${esc(id)}">${esc(name)}${Number(points)?' +'+Number(points)+'P':''}</option>`).join('')}
+function renderBookCategories(){const cats=state.settings.bookCategories||[['normal','일반책',0]];bookType.innerHTML=cats.map(([id,name,bonus])=>`<option value="${esc(id)}">${esc(name)}${Number(bonus)?' +'+Number(bonus)+'P':''}</option>`).join('')}
+function flyReadingGem(lang){const start=document.querySelector('.reading-record-panel .btn'),target=document.getElementById('gemCount');if(!start||!target)return;const s=start.getBoundingClientRect(),t=target.getBoundingClientRect(),book=document.createElement('div');book.className='flying-book-gem';book.innerHTML=lang==='한글'?'📕<span>💎</span>':'📘<span>💎</span>';book.style.left=(s.left+s.width/2)+'px';book.style.top=(s.top+s.height/2)+'px';book.style.setProperty('--gem-x',(t.left-s.left)+'px');book.style.setProperty('--gem-y',(t.top-s.top)+'px');document.body.appendChild(book);setTimeout(()=>book.remove(),1100);}
+function addBook(){const t=bookTitle.value.trim();if(!t)return toast('책 제목을 입력해 주세요.');const lang=bookLang.value,type=bookType.value,activityId=bookActivity.value,activity=(state.settings.additionalActivities||[]).find(x=>x[0]===activityId)||['none','추가 활동 없음',0],extra=Number(activity[2])||0,cat=(state.settings.bookCategories||[]).find(x=>x[0]===type)||['normal','일반책',0],bonus=Number(cat[2])||0,total=state.settings.bookPoint+bonus+extra;state.books.unshift({title:t,lang,type,typeName:cat[1],activityName:activity[1],date:today(),points:total,gems:1});state.gems=Number(state.gems||0)+1;flyReadingGem(lang);playSound('magic');addPoints(total,`${lang}책 기록 · ${cat[1]} · 보석 1개`);bookTitle.value='';toast(`${lang==='한글'?'📕 한글책':'📘 영어책'} 기록! +${total}P · 💎1`);}
+function exchangeGems(){if(state.gems<state.settings.gemGoal)return toast(`보석이 ${state.settings.gemGoal}개 필요해요.`);state.gems-=state.settings.gemGoal;addPoints(state.settings.gemExchange,'독서 보석 교환');toast('💎 포인트로 교환했어요!')}function renderBooks(){
+  gemCount.textContent=state.gems;
+  gemRuleText.textContent=`보석 ${state.settings.gemGoal}개 → ${state.settings.gemExchange}P`;
+
+  const koCount=state.books.filter(b=>b.lang==='한글').length;
+  const enCount=state.books.filter(b=>b.lang==='영어').length;
+  koreanBookCount.textContent=koCount+'권';
+  englishBookCount.textContent=enCount+'권';
+
+  const h=state.books.length
+    ? state.books.map(b=>{
+        const isKo=b.lang==='한글';
+        const badge=isKo
+          ? '<span class="lang-book-badge ko" title="한글책">가</span>'
+          : '<span class="lang-book-badge en" title="영어책">ABC</span>';
+        return `<div class="row">${badge}<div class="grow"><b>${esc(b.title)}</b><br><small>${b.date} · ${esc(b.typeName||b.type||'일반책')}${b.activityName&&b.activityName!=='추가 활동 없음'?' · '+esc(b.activityName):''}</small></div><b>+${b.points}P</b></div>`;
+      }).join('')
+    : '<p>아직 기록한 책이 없어요.</p>';
+
+  bookList.innerHTML=h;
+  albumList.innerHTML=h;
+}
+function renderMission(){
+  const missions=Array.isArray(state.settings.missions)?state.settings.missions.slice(0,10):[];
+  missionCards.innerHTML=missions.map((m,i)=>{
+    const chosen=state.mission.choice===i;
+    return `<button type="button" class="mission-card ${chosen?'flipped selected-mission-card':''}" data-mission-index="${i}" aria-pressed="${chosen?'true':'false'}">${chosen?`<b>${esc(m)}</b><br><small>${state.settings.missionApprovalRequired?'완료 후 부모 승인':'완료 즉시 포인트 지급'}</small>`:'🌙'}</button>`;
+  }).join('');
+
+  if(state.mission.choice===null){
+    missionResult.innerHTML='<div class="mission-help">카드 한 장을 선택하면 아래 완료 버튼이 활성화돼요.</div><button type="button" class="mission-action-button" disabled>⭐ 미션 완료했어요</button>';
+    return;
+  }
+  if(state.mission.done){
+    missionResult.innerHTML='<div class="mission-status done">✅ 오늘의 특별미션 완료</div>';
+    return;
+  }
+  if(state.mission.pending){
+    missionResult.innerHTML='<div class="mission-status pending">⏳ 엄마에게 승인 요청을 보냈어요.</div><div class="approval-wait-card"><img src="assets/ruby_idle.png" alt="루비"><div><b>엄마가 확인한 뒤 승인해 줄 거예요.</b><small>조금만 기다려 주세요 🌙</small></div></div>';
+    return;
+  }
+  missionResult.innerHTML='<button type="button" class="mission-action-button" data-mission-action="complete">⭐ 미션 완료했어요</button>';
+}
+function chooseMission(i){
+  if(state.mission.done)return toast('오늘의 미션은 이미 완료했어요.');
+  if(state.mission.pending)return toast('부모 승인을 기다리고 있어요.');
+  if(state.mission.choice!==null)return toast('오늘은 이미 카드를 골랐어요.');
+  state.mission.choice=Number(i);
+  save();
+  playSound('magic');
+  toast('✨ 오늘의 특별미션을 골랐어요!');
+}
+function completeMissionRequest(){
+  if(state.mission.choice===null)return toast('먼저 미션 카드를 선택해 주세요.');
+  if(state.mission.done)return toast('오늘 미션은 이미 완료했어요.');
+  if(state.mission.pending)return toast('이미 부모 승인을 기다리고 있어요.');
+  if(!state.settings.missionApprovalRequired){
+    state.mission.done=true;
+    state.mission.pending=false;
+    addPoints(state.settings.missionPoint,'특별미션 완료');
+    playSound('success');
+    sparkleBurst();
+    toast('⭐ 특별미션 완료!');
+    return;
+  }
+  state.mission.pending=true;
+  save();
+  playSound('magic');
+  toast('⏳ 부모 승인 대기 상태로 바뀌었어요.');
+}
+function approveMission(){toast('엄마가 설정에서 확인하고 승인해 줄 거예요.');}
+function approveMissionFromSettings(){
+  if(!state.mission.pending)return toast('승인을 기다리는 미션이 없어요.');
+  if(state.mission.done)return toast('이미 승인된 미션이에요.');
+  state.mission.pending=false;
+  state.mission.done=true;
+  addPoints(state.settings.missionPoint,'특별미션 완료');
+  playSound('success');
+  sparkleBurst();
+  toast('⭐ 설정에서 부모 승인을 완료했어요.');
+  renderSettings();
+}
+
+function brainLevelInfo(domain){
+  const exp=Number(state.brainExp[domain]||0),need=Number(state.settings.brainLevelExp||100);
+  return {exp,level:Math.floor(exp/need)+1,progress:exp%need,need};
+}
+function addBrainExp(domain,amount){
+  const before=brainLevelInfo(domain).level;
+  state.brainExp[domain]=Number(state.brainExp[domain]||0)+amount;
+  const after=brainLevelInfo(domain).level;
+  if(after>before){
+    const gems=(after-before)*Number(state.settings.brainLevelGem||1);
+    state.gems=Number(state.gems||0)+gems;
+    playSound('success');sparkleBurst();
+    toast(`🎉 ${domain} Lv.${after}! 💎${gems}개`);
+  }
+}
+function renderBrain(){
+  const list=parseLearning(state.settings.brainRoutine).filter(x=>x.active),done=state.brainDone.items;
+  const skipped=(state.brainDone.skipped||[]).filter(i=>!done.includes(i)&&list.some(x=>x.sourceIndex===i));
+  state.brainDone.skipped=skipped;
+  const fresh=list.filter(x=>!done.includes(x.sourceIndex)&&!skipped.includes(x.sourceIndex));
+  const current=fresh.length?fresh[0]:(skipped.length?list.find(x=>x.sourceIndex===skipped[0]):null);
+  brainDoneCount.textContent=done.filter(i=>list.some(x=>x.sourceIndex===i)).length+'개';
+  brainEarned.textContent=(done.filter(i=>list.some(x=>x.sourceIndex===i)).length*Number(state.settings.brainExpPerTask||20))+' EXP';
+  brainSelectedCount.textContent=list.length+'개';
+  brainOverview.innerHTML=list.map(x=>{
+    const i=x.sourceIndex,info=brainLevelInfo(x.domain);
+    const cls=done.includes(i)?'done':skipped.includes(i)?'skipped':current&&i===current.sourceIndex?'current':'';
+    const mark=done.includes(i)?'✓':skipped.includes(i)?'↺':current&&i===current.sourceIndex?'●':'○';
+    return `<div class="routine-chip ${cls}"><span>${mark}</span><span>${x.icon} ${esc(x.name)}</span><em>${esc(x.domain)} Lv.${info.level}</em></div>`;
+  }).join('');
+  brainDots.textContent=list.map(x=>done.includes(x.sourceIndex)?'●':skipped.includes(x.sourceIndex)?'↺':current&&x.sourceIndex===current.sourceIndex?'◉':'○').join(' ');
+  if(!list.length){brainFocus.innerHTML='<div class="focus-card" style="display:grid;place-items:center;text-align:center"><div><div class="focus-icon">🧠</div><h2>오늘 선택된 두뇌루틴이 없어요.</h2><p>설정에서 오늘 할 활동을 ON으로 골라 주세요.</p></div></div>';return;}
+  if(!current){brainFocus.innerHTML='<div class="focus-card" style="display:grid;place-items:center;text-align:center"><div><div class="focus-icon">💎</div><h2>오늘의 두뇌루틴을 모두 완료했어요!</h2><p>감각과 두뇌의 힘이 차곡차곡 자랐어요.</p></div></div>';return;}
+  const info=brainLevelInfo(current.domain),isRepeat=skipped.includes(current.sourceIndex);
+  brainFocus.innerHTML=`<div class="focus-card"><div class="routine-task-number">${list.findIndex(x=>x.sourceIndex===current.sourceIndex)+1} / ${list.length} ${isRepeat?'· 다시 도전':''}</div><h2 class="routine-task-title">${current.icon} ${esc(current.name)}</h2><div class="routine-task-meta">${esc(current.domain)} Lv.${info.level} · ${info.progress}/${info.need} EXP · ${esc(current.time)}</div><div class="progress"><i style="width:${Math.round(info.progress/info.need*100)}%"></i></div>${isRepeat?'<div class="habit-repeat-note">아까 미뤄둔 활동이에요. 짧게 다시 해볼까요?</div>':''}<div class="focus-actions"><button class="btn soft" onclick="startLearningTimer('${esc(current.time)}','${esc(current.name)}')">시작하기</button><button class="btn pink" onclick="completeBrain(${current.sourceIndex})">완료했어요</button><button class="btn soft" onclick="skipBrain(${current.sourceIndex})">나중에 할래요</button></div></div>`;
+}
+function completeBrain(i){
+  i=Number(i);const item=parseLearning(state.settings.brainRoutine).find(x=>x.sourceIndex===i);
+  if(!item||state.brainDone.items.includes(i))return;
+  state.brainDone.items.push(i);state.brainDone.skipped=(state.brainDone.skipped||[]).filter(x=>x!==i);
+  addBrainExp(item.domain,Number(state.settings.brainExpPerTask||20));save();
+  playSound('success');sparkleBurst();toast('🧠 두뇌 EXP가 자랐어요!');
+}
+function skipBrain(i){
+  i=Number(i);if(state.brainDone.items.includes(i))return;
+  state.brainDone.skipped=(state.brainDone.skipped||[]).filter(x=>x!==i);state.brainDone.skipped.push(i);
+  save();toast('↺ 마지막에 다시 보여줄게요.');
+}
+function openBrainResult(){
+  const domains=[...new Set(parseLearning(state.settings.brainRoutine).filter(x=>x.active).map(x=>x.domain))];
+  const rows=domains.map(d=>{const x=brainLevelInfo(d);return `<div class="row"><b>${esc(d)}</b><span>Lv.${x.level} · ${x.progress}/${x.need} EXP</span></div>`}).join('');
+  openModal(`<h2>🧠 두뇌루틴 성장</h2>${rows}<p>영역 레벨이 오를 때마다 보석이 지급돼요.</p><button class="btn" onclick="closeModal()">확인</button>`);
+}
+
+
+function rejectMissionFromSettings(){
+  if(!state.mission.pending||state.mission.done)return toast('보류할 미션이 없어요.');
+  state.mission.pending=false;
+  save();
+  toast('이번 미션 요청은 보류했어요.');
+  renderSettings();
+}
+
+const worldRegions=[
+  {name:'구름의 아카데미',icon:'☁️',books:100,x:19,y:34,story:'구름 위에서 지혜와 용기를 배우는 첫 번째 마법 학교예요.'},
+  {name:'별사탕 궁전',icon:'⭐',books:200,x:38,y:24,story:'별빛 사탕이 반짝이는 달콤한 궁전이에요.'},
+  {name:'꿈꾸는 나무숲',icon:'🌳',books:300,x:71,y:25,story:'책 속 상상이 나무 열매처럼 자라는 신비로운 숲이에요.'},
+  {name:'반짝 호수',icon:'💧',books:400,x:30,y:55,story:'읽은 이야기가 물결 위 별빛으로 떠오르는 호수예요.'},
+  {name:'빛나는 해변마을',icon:'🏝️',books:500,x:55,y:50,story:'따뜻한 햇빛 아래 이야기와 친구를 만나는 마을이에요.'},
+  {name:'요정의 온실',icon:'🌸',books:600,x:15,y:72,story:'새로운 낱말과 생각이 꽃처럼 피어나는 온실이에요.'},
+  {name:'바람의 항구',icon:'⛵',books:700,x:43,y:72,story:'다음 책의 세계로 떠나는 마법 배가 기다리는 항구예요.'},
+  {name:'사랑의 마을',icon:'💗',books:800,x:78,y:58,story:'친절과 감사가 집집마다 빛나는 따뜻한 마을이에요.'},
+  {name:'수정 지혜의 성',icon:'💎',books:900,x:68,y:76,story:'모은 지식이 수정처럼 빛나는 지혜의 성이에요.'},
+  {name:'천 권 마법도서관',icon:'📚',books:1000,x:86,y:38,story:'천 권의 이야기가 모두 모이는 최종 마법도서관이에요.'}
+];
+
+function renderMap(){
+  const c=state.books.length;
+  worldBookCount.textContent=`${Math.min(c,1000).toLocaleString()} / 1,000권`;
+  worldTotalBar.style.width=Math.min(100,c/10)+'%';
+  const next=worldRegions.find(r=>c<r.books);
+  mapText.textContent=next?`${next.name}까지 ${next.books-c}권 남았어요.`:'10개 지역을 모두 열었어요!';
+  const currentIndex=Math.min(9,Math.floor(c/100));
+  mapHotspots.innerHTML=worldRegions.map((r,i)=>{
+    const unlocked=c>=Number(r.books);
+    const current=i===currentIndex && c<1000;
+    return `<button type="button" class="map-hotspot ${unlocked?'':'locked'} ${current?'current':''}" data-region="${i}" style="left:${r.x}%;top:${r.y}%" title="${r.name}" aria-label="${r.name}">${unlocked?i+1:'🔒'}</button>`;
+  }).join('');
+  bindWorldMapClicks();
+}
+function bindWorldMapClicks(){
+  const layer=document.getElementById('mapHotspots');
+  if(!layer||layer.dataset.bound==='1')return;
+  layer.dataset.bound='1';
+  const activate=e=>{
+    const btn=e.target.closest('.map-hotspot');
+    if(!btn||!layer.contains(btn))return;
+    e.preventDefault();
+    e.stopPropagation();
+    openWorldRegion(Number(btn.dataset.region));
+  };
+  layer.addEventListener('click',activate);
+  layer.addEventListener('touchend',activate,{passive:false});
+}
+function openWorldRegion(i){
+  const r=worldRegions[i],c=state.books.length,unlocked=c>=Number(r.books);
+  if(!unlocked){
+    openModal(`<div class="map-region-popup locked-region-popup">
+      <div class="region-icon">${r.icon}</div>
+      <h2>${i+1}. ${r.name}</h2>
+      <p>${r.story}</p>
+      <p class="unlock">🔒 ${Math.max(0,r.books-c)}권을 더 읽으면 열려요.</p>
+      <button class="btn soft" onclick="closeModal()">계속 책 읽기</button>
+    </div>`);
+    return;
+  }
+  enterWorldRegion(i);
+}
+function enterWorldRegion(i){
+  const r=worldRegions[i],c=state.books.length;
+  const scene=document.getElementById('worldRegionScene');
+  if(!scene)return;
+  document.getElementById('worldRegionIcon').textContent=r.icon;
+  document.getElementById('worldRegionNumber').textContent=`REGION ${String(i+1).padStart(2,'0')}`;
+  document.getElementById('worldRegionTitle').textContent=r.name;
+  document.getElementById('worldRegionStory').textContent=r.story;
+  document.getElementById('worldRegionProgress').textContent=`${Math.min(c,r.books)} / ${r.books}권 달성`;
+  document.getElementById('worldRegionBar').style.width=Math.min(100,c/r.books*100)+'%';
+  document.getElementById('worldRegionReward').textContent=i===9?'👑 천 권 마법도서관 완성':'✨ 지혜의 별을 발견했어요';
+  scene.style.setProperty('--region-x',`${r.x}%`);
+  scene.style.setProperty('--region-y',`${r.y}%`);
+  scene.classList.add('active','opening');
+  playSound('magic');
+  sparkleBurst();
+  setTimeout(()=>scene.classList.remove('opening'),1000);
+}
+function closeWorldRegion(){
+  const scene=document.getElementById('worldRegionScene');
+  if(scene)scene.classList.remove('active','opening');
+}
+function demoWorldProgress(){
+  for(let i=0;i<100;i++)state.books.push({title:'시안용 독서 기록',lang:'한글',date:today(),points:0});
+  save();toast('🗺️ 시안 확인을 위해 100권이 추가됐어요.');
+}
+function switchBankTab(tab){pointLedgerTab.classList.toggle('active',tab==='point');moneyLedgerTab.classList.toggle('active',tab==='money');pointLedgerPane.classList.toggle('active',tab==='point');moneyLedgerPane.classList.toggle('active',tab==='money')}
+function recordMoney(type){const amount=Number(moneyAmount.value),memo=moneyMemo.value.trim();if(!amount||amount<0)return toast('금액을 입력해 주세요.');if(type==='spend'&&state.money<amount)return toast('용돈 잔액이 부족해요.');const signed=type==='deposit'?amount:-amount;state.money+=signed;state.moneyLedger.unshift({date:today(),amount:signed,memo:memo||(type==='deposit'?'용돈 입금':'용돈 사용')});moneyMemo.value='';moneyAmount.value='';save();toast(type==='deposit'?'💰 용돈을 입금했어요.':'🧾 용돈 사용을 기록했어요.')}
+function renderBank(){bankPoints.textContent=state.points+'P';bankMoney.textContent=(state.money||0).toLocaleString()+'원';bankGems.textContent=state.gems+'개';bankToday.textContent=state.ledger.filter(x=>x.date===today()).reduce((a,b)=>a+b.amount,0)+'P';ledger.innerHTML=state.ledger.length?state.ledger.map(x=>`<div class="row"><div class="grow"><b>${x.memo}</b><br><small>${x.date}</small></div><b>${x.amount>=0?'+':''}${x.amount}P</b></div>`).join(''):'<p>포인트 거래내역이 없어요.</p>';moneyLedger.innerHTML=(state.moneyLedger||[]).length?state.moneyLedger.map(x=>`<div class="row"><div class="grow"><b>${x.memo}</b><br><small>${x.date}</small></div><b style="color:${x.amount>=0?'#4f9a72':'#c5527f'}">${x.amount>=0?'+':''}${x.amount.toLocaleString()}원</b></div>`).join(''):'<p>용돈 거래내역이 없어요.</p>'}
+
+function pendingShopRequest(index){
+  return (state.shopRequests||[]).find(r=>r.status==='pending'&&r.productIndex===index);
+}
+function renderShop(){
+  shopGrid.innerHTML=state.settings.shop.map(([name,price,icon],idx)=>{
+    const pending=pendingShopRequest(idx);
+    return `<div class="product magical-product-card">
+      <div class="big">${icon}</div>
+      <b>${esc(name)}</b>
+      <p>${price}P</p>
+      ${pending
+        ? '<button class="btn soft" disabled>⏳ 엄마 확인 중</button><small class="request-note">승인 요청을 보냈어요.</small>'
+        : `<button class="btn soft" onclick="buy(${idx})">엄마에게 구매 요청</button>`}
+    </div>`;
+  }).join('');
+}
+function buy(i){
+  const item=state.settings.shop[i];
+  if(!item)return;
+  const [name,price,icon]=item;
+  if(state.points<price)return toast('포인트가 부족해요.');
+  if(pendingShopRequest(i))return toast('이미 엄마에게 요청했어요.');
+  state.shopRequests.unshift({
+    id:'shop_'+Date.now(),
+    productIndex:i,
+    name,
+    price:Number(price),
+    icon,
+    status:'pending',
+    requestedAt:new Date().toISOString()
+  });
+  save();
+  playSound('magic');
+  toast('🌙 엄마에게 구매 요청을 보냈어요.');
+}
+function approveShopRequest(id){
+  const request=state.shopRequests.find(r=>r.id===id);
+  if(!request||request.status!=='pending')return toast('이미 처리된 요청이에요.');
+  if(state.points<request.price)return toast('현재 포인트가 부족해 승인할 수 없어요.');
+  state.points-=request.price;
+  state.ledger.unshift({date:today(),amount:-request.price,memo:'상점 구매 승인: '+request.name});
+  request.status='approved';
+  request.reviewedAt=new Date().toISOString();
+  save();
+  playSound('success');sparkleBurst();
+  toast('🎁 구매 요청을 승인했어요.');
+  renderSettings();
+}
+function rejectShopRequest(id){
+  const request=state.shopRequests.find(r=>r.id===id);
+  if(!request||request.status!=='pending')return toast('이미 처리된 요청이에요.');
+  request.status='rejected';
+  request.reviewedAt=new Date().toISOString();
+  save();
+  toast('이번 요청은 보류했어요.');
+  renderSettings();
+}
+function clearReviewedShopRequests(){
+  state.shopRequests=(state.shopRequests||[]).filter(r=>r.status==='pending');
+  save();renderSettings();toast('처리 완료 기록을 정리했어요.');
+}
+function renderStats(){
+  statRoutine.textContent=state.routineDone.items.length+'회';
+  statHabits.textContent=(state.habitDone.morning.items.length+state.habitDone.after.items.length+state.habitDone.evening.items.length)+'회';
+  statBooks.textContent=state.books.length+'권';
+  statMission.textContent=(state.mission.done?1:0)+'회';
+  statPoints.textContent=state.points+'P';
+  statMoney.textContent=(state.money||0).toLocaleString()+'원';
+  const entries=Object.entries(state.moonDiary||{}).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,7);
+  diaryStatsList.innerHTML=entries.length?entries.map(([date,d])=>`<div class="diary-stat-card"><b>${date}</b><div>${d.sentence||'선택형 달빛일기'}</div>${d.freeText?`<p>✏️ ${esc(d.freeText)}</p>`:''}</div>`).join(''):'<div class="empty-diary-stat">아직 저장된 달빛일기가 없어요.</div>';
+  const memos=(state.parentMemos||[]).slice(0,7);
+  const parentMemoStatsEl=document.getElementById('parentMemoStatsList');
+  if(parentMemoStatsEl)parentMemoStatsEl.innerHTML=memos.length?memos.map(m=>`<div class="diary-stat-card parent-stat-card"><b>${m.date} · ${esc(m.mood)}</b><div>가장 오래 본 화면: ${esc(m.favorite)}</div><p>${esc(m.text)}</p></div>`).join(''):'<div class="empty-diary-stat">아직 저장된 엄마 메모가 없어요.</div>';
+}
+function printGrowthReport(){const routineCount=state.routineDone.items.length;const bookRows=state.books.slice(0,20).map(b=>`<tr><td>${b.date}</td><td>${esc(b.title)}</td><td>${b.lang}</td><td>${b.points}P</td></tr>`).join('')||'<tr><td colspan="4">아직 독서 기록이 없어요.</td></tr>';const pointRows=state.ledger.slice(0,20).map(x=>`<tr><td>${x.date}</td><td>${esc(x.memo)}</td><td>${x.amount>=0?'+':''}${x.amount}P</td></tr>`).join('')||'<tr><td colspan="3">기록 없음</td></tr>';const moneyRows=(state.moneyLedger||[]).slice(0,20).map(x=>`<tr><td>${x.date}</td><td>${esc(x.memo)}</td><td>${x.amount>=0?'+':''}${x.amount.toLocaleString()}원</td></tr>`).join('')||'<tr><td colspan="3">기록 없음</td></tr>';printReport.innerHTML=`<div class="print-page"><div class="print-title"><h1>🌙 다이애나의 성장 이야기</h1><p>${new Date().toLocaleDateString()} 성장 리포트</p></div><div class="print-grid"><div class="print-box"><h3>📋 학습루틴</h3><b>${routineCount}회 완료</b></div><div class="print-box"><h3>🌱 생활습관</h3><b>${(state.habitDone.morning.items.length+state.habitDone.after.items.length+state.habitDone.evening.items.length)}회 완료</b></div><div class="print-box"><h3>📚 독서</h3><b>${state.books.length}권 / 1,000권</b></div><div class="print-box"><h3>🎴 특별미션</h3><b>${state.mission.done?1:0}회 완료</b></div><div class="print-box"><h3>🪙 성장 포인트</h3><b>${state.points.toLocaleString()}P</b></div><div class="print-box"><h3>💰 용돈 통장</h3><b>${(state.money||0).toLocaleString()}원</b></div><div class="print-box print-full"><h3>📖 최근 독서 기록</h3><table class="print-table"><tr><th>날짜</th><th>책 제목</th><th>구분</th><th>포인트</th></tr>${bookRows}</table></div><div class="print-box print-full"><h3>🪙 최근 포인트 내역</h3><table class="print-table"><tr><th>날짜</th><th>내용</th><th>금액</th></tr>${pointRows}</table></div><div class="print-box print-full"><h3>💰 최근 용돈 내역</h3><table class="print-table"><tr><th>날짜</th><th>내용</th><th>금액</th></tr>${moneyRows}</table></div><div class="print-box print-full"><h3>🌙 최근 달빛일기</h3>${Object.entries(state.moonDiary||{}).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,7).map(([date,d])=>`<p><b>${date}</b><br>${d.sentence||''}${d.freeText?`<br>✏️ ${esc(d.freeText)}`:''}</p>`).join('')||'<p>기록 없음</p>'}</div><div class="print-box print-full"><h3>📝 엄마의 실사용 메모</h3>${getParentMemoPrintHtml()}</div><div class="print-box print-full"><h3>💌 부모가 남기는 말</h3><p>결과보다 다시 시작하고 끝까지 해낸 네 모습이 가장 자랑스러워.</p></div></div></div>`;window.print()}
+
+
+
+let moonDiaryDraft={step:0,answers:[],selected:null,freeText:''};
+
+function openMorningCheck(){
+  const saved=state.moods.morning[today()]||{};
+  const options=state.settings.morningCheckOptions||[];
+  openModal(`<div class="check-diary-card">
+    <h2>☀️ 오전 마음 체크</h2>
+    <p>${esc(state.settings.morningCheckQuestion||'오늘 아침은 어때요?')}</p>
+    <div class="check-option-list">${options.map((o,i)=>`
+      <label class="check-option ${saved.answer===o?'selected':''}">
+        <input type="radio" name="morningCheck" value="${esc(o)}" ${saved.answer===o?'checked':''}>
+        <span class="fake-check">✓</span><span>${esc(o)}</span>
+      </label>`).join('')}</div>
+    <button class="btn gold" onclick="saveMorningCheck()">저장하기</button>
+  </div>`);
+}
+function saveMorningCheck(){
+  const picked=document.querySelector('input[name="morningCheck"]:checked');
+  if(!picked)return toast('지금 마음과 가장 가까운 답을 골라 주세요.');
+  state.moods.morning[today()]={answer:picked.value,savedAt:new Date().toISOString()};
+  save();closeModal();playSound('magic');sparkleBurst();toast('☀️ 오전 마음을 저장했어요.');
+}
+
+function openMoonDiary(){
+  const saved=state.moonDiary[today()];
+  moonDiaryDraft=saved
+    ? {step:0,answers:[...(saved.answers||[])],selected:null,freeText:saved.freeText||''}
+    : {step:0,answers:[],selected:null,freeText:''};
+  renderMoonDiaryModal();
+}
+function renderMoonDiaryModal(){
+  const steps=state.settings.moonDiarySteps||[];
+  if(!steps.length){
+    openModal('<h2>🌙 달빛일기</h2><p>설정에서 질문과 선택지를 먼저 만들어 주세요.</p><button class="btn" onclick="closeModal()">확인</button>');
+    return;
+  }
+  if(moonDiaryDraft.step>=steps.length){
+    const sentence=buildMoonDiarySentence(moonDiaryDraft.answers);
+    const list=state.settings.moonDiaryClosing||['오늘도 잘했어!'];
+    openModal(`<div class="moon-diary-card">
+      <h2>🌙 오늘의 달빛일기</h2>
+      <div class="diary-progress-summary">${steps.map((s,i)=>`<span class="done">✓ ${i+1}</span>`).join('')}</div>
+      <div class="moon-complete">${sentence}</div>
+      <label class="moon-free-line"><b>✏️ 나만의 한 줄</b><input id="moonDiaryFreeText" maxlength="100" placeholder="${esc(state.settings.moonDiaryFreePrompt||'하고 싶은 말을 적어도 좋아요.')}" value="${esc(moonDiaryDraft.freeText||'')}"></label>
+      <p>${esc(list[(new Date().getDate()-1)%list.length])}</p>
+      <button class="btn gold" onclick="saveMoonDiary()">달빛일기 저장</button>
+      <button class="btn soft" onclick="restartMoonDiary()">다시 고르기</button>
+    </div>`);
+    return;
+  }
+
+  const s=steps[moonDiaryDraft.step];
+  const previous=moonDiaryDraft.answers[moonDiaryDraft.step]||'';
+  openModal(`<div class="moon-diary-card">
+    <div class="diary-progress-summary">${steps.map((x,i)=>`<span class="${i<moonDiaryDraft.step?'done':i===moonDiaryDraft.step?'current':''}">${i<moonDiaryDraft.step?'✓':i+1}</span>`).join('')}</div>
+    <div class="moon-step">${moonDiaryDraft.step+1} / ${steps.length}</div>
+    <h2>${esc(s.title)}</h2>
+    <p>${esc(s.question)}</p>
+    <div class="check-option-list">${(s.options||[]).map((o,i)=>`
+      <label class="check-option ${previous===o?'selected':''}">
+        <input type="radio" name="moonStepOption" value="${esc(o)}" ${previous===o?'checked':''}
+          onchange="selectMoonDiaryAnswer(this)">
+        <span class="fake-check">✓</span><span>${esc(o)}</span>
+      </label>`).join('')}</div>
+    <div class="diary-actions">
+      ${moonDiaryDraft.step>0?'<button class="btn soft" onclick="moonDiaryBack()">이전</button>':''}
+      <button class="btn gold" onclick="moonDiaryNext()">선택하고 다음</button>
+      <button class="btn soft" onclick="saveSimpleMoonDiary()">오늘은 여기까지 저장</button>
+    </div>
+  </div>`);
+}
+function selectMoonDiaryAnswer(input){
+  document.querySelectorAll('.check-option').forEach(x=>x.classList.remove('selected'));
+  input.closest('.check-option').classList.add('selected');
+  moonDiaryDraft.selected=input.value;
+}
+function moonDiaryNext(){
+  const picked=document.querySelector('input[name="moonStepOption"]:checked');
+  if(!picked)return toast('답을 하나 골라 주세요.');
+  moonDiaryDraft.answers[moonDiaryDraft.step]=picked.value;
+  moonDiaryDraft.step++;
+  moonDiaryDraft.selected=null;
+  playSound('click');
+  renderMoonDiaryModal();
+}
+function chooseMoonDiaryOption(i){
+  const step=state.settings.moonDiarySteps[moonDiaryDraft.step];
+  moonDiaryDraft.answers[moonDiaryDraft.step]=step.options[i];
+  moonDiaryDraft.step++;
+  renderMoonDiaryModal();
+}
+function moonDiaryBack(){
+  if(moonDiaryDraft.step>0){
+    moonDiaryDraft.step--;
+    moonDiaryDraft.selected=moonDiaryDraft.answers[moonDiaryDraft.step]||null;
+    renderMoonDiaryModal();
+  }
+}
+function restartMoonDiary(){moonDiaryDraft={step:0,answers:[],selected:null,freeText:''};renderMoonDiaryModal();}
+function buildMoonDiarySentence(a){
+  const clean=x=>(x||'').replace(/^[^\s]+\s/,'');
+  const parts=[];
+  if(a[0])parts.push(`오늘 나는 <b>${clean(a[0])}</b>`);
+  if(a[1])parts.push(`그때 <b>${clean(a[1])}</b>`);
+  if(a[2])parts.push(`그리고 <b>${clean(a[2])}</b>`);
+  if(a[3])parts.push(`내일은 <b>${clean(a[3])}</b>`);
+  return parts.join(' ');
+}
+function saveMoonDiary(){
+  if(!moonDiaryDraft.answers.length)return toast('한 가지 이상 골라 주세요.');
+  const sentence=buildMoonDiarySentence(moonDiaryDraft.answers);
+  const already=!!state.moonDiary[today()];
+  moonDiaryDraft.freeText=(document.getElementById('moonDiaryFreeText')?.value||moonDiaryDraft.freeText||'').trim();state.moonDiary[today()]={answers:[...moonDiaryDraft.answers],sentence,freeText:moonDiaryDraft.freeText,savedAt:new Date().toISOString()};
+  if(!already&&Number(state.settings.moonDiaryRewardPoint||0)>0){
+    addPoints(Number(state.settings.moonDiaryRewardPoint||0),'달빛일기 완성');
+  }else{
+    save();
+  }
+  closeModal();playSound('magic');sparkleBurst();toast('🌙 달빛일기가 저장됐어요!');
+}
+function saveSimpleMoonDiary(){
+  const picked=document.querySelector('input[name="moonStepOption"]:checked');
+  if(picked)moonDiaryDraft.answers[moonDiaryDraft.step]=picked.value;
+  if(!moonDiaryDraft.answers.filter(Boolean).length)return toast('한 가지는 골라 주세요.');
+  saveMoonDiary();
+}
+
+let selectedMorningMood='';
+let selectedEveningMood='';
+const moodChoices=[['아주 좋아','😄'],['좋아','😊'],['보통','😐'],['속상해','😢'],['화가 나','😠']];
+
+function moodButtons(kind,current){
+  return `<div class="mood-grid">${moodChoices.map(([label,emoji])=>`<button class="mood-btn ${current===label?'selected':''}" onclick="selectMood('${kind}','${label}',this)" title="${label}">${emoji}</button>`).join('')}</div>`;
+}
+function selectMood(kind,label,el){
+  if(kind==='morning')selectedMorningMood=label;else selectedEveningMood=label;
+  el.parentElement.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function openMorningMood(){
+  const saved=state.moods.morning[today()]||{};
+  selectedMorningMood=saved.mood||'';
+  openModal(`<div class="reflection-card"><h2>🌙 달빛일기</h2><p>${esc(state.settings.morningMoodPrompt)}</p>${moodButtons('morning',selectedMorningMood)}<textarea id="morningMoodNote" placeholder="하고 싶은 말이 있으면 적어도 좋아요.">${esc(saved.note||'')}</textarea><button class="btn gold" onclick="saveMorningMood()">저장하기</button></div>`);
+}
+function saveMorningMood(){
+  if(!selectedMorningMood)return toast('지금 기분을 하나 골라 주세요.');
+  state.moods.morning[today()]={mood:selectedMorningMood,note:morningMoodNote.value.trim(),savedAt:new Date().toISOString()};
+  closeModal();save();playSound('magic');sparkleBurst();toast('🌙 달빛일기을 저장했어요.');
+}
+function openDayReflection(){
+  const saved=state.moods.evening[today()]||{};
+  selectedEveningMood=saved.mood||'';
+  openModal(`<div class="reflection-card"><h2>🌙 오늘 하루 마무리</h2><p>오늘 기분은 어땠어?</p>${moodButtons('evening',selectedEveningMood)}<label>${esc(state.settings.eveningReflectionPrompt)}<textarea id="reflectionBest">${esc(saved.best||'')}</textarea></label><label>${esc(state.settings.gratitudePrompt)}<textarea id="reflectionThanks">${esc(saved.thanks||'')}</textarea></label><label>${esc(state.settings.tomorrowPrompt)}<textarea id="reflectionTomorrow">${esc(saved.tomorrow||'')}</textarea></label><button class="btn gold" onclick="saveDayReflection()">오늘 저장하기</button></div>`);
+}
+function saveDayReflection(){
+  if(!selectedEveningMood)return toast('오늘의 기분을 하나 골라 주세요.');
+  state.moods.evening[today()]={mood:selectedEveningMood,best:reflectionBest.value.trim(),thanks:reflectionThanks.value.trim(),tomorrow:reflectionTomorrow.value.trim(),savedAt:new Date().toISOString()};
+  closeModal();save();playSound('magic');sparkleBurst();toast('🌙 오늘 하루를 멋지게 마무리했어요.');
+}
+
+
+let lunaAudioCtx=null;
+function playSound(type='click'){
+  if(!state.settings.sound)return;
+  try{
+    lunaAudioCtx=lunaAudioCtx||new (window.AudioContext||window.webkitAudioContext)();
+    const ctx=lunaAudioCtx,now=ctx.currentTime;
+    const notes=type==='success'?[523.25,659.25,783.99]:type==='magic'?[659.25,880,1046.5]:[440];
+    notes.forEach((freq,i)=>{
+      const osc=ctx.createOscillator(),gain=ctx.createGain();
+      osc.type='sine';osc.frequency.setValueAtTime(freq,now+i*.09);
+      gain.gain.setValueAtTime(.0001,now+i*.09);
+      gain.gain.exponentialRampToValueAtTime(type==='click'?.025:.06,now+i*.09+.015);
+      gain.gain.exponentialRampToValueAtTime(.0001,now+i*.09+.18);
+      osc.connect(gain).connect(ctx.destination);osc.start(now+i*.09);osc.stop(now+i*.09+.2);
+    });
+  }catch(e){}
+}
+function sparkleBurst(x=innerWidth/2,y=innerHeight/2){
+  for(let i=0;i<18;i++){
+    const s=document.createElement('i');s.className='sparkle-particle';
+    s.style.left=x+'px';s.style.top=y+'px';
+    const a=Math.random()*Math.PI*2,d=45+Math.random()*85;
+    s.style.setProperty('--dx',Math.cos(a)*d+'px');
+    s.style.setProperty('--dy',Math.sin(a)*d+'px');
+    document.body.appendChild(s);setTimeout(()=>s.remove(),900);
+  }
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('button'))playSound('click');
+},{passive:true});
+
+
+document.addEventListener('click',function(e){
+  const card=e.target.closest('[data-mission-index]');
+  if(card){
+    e.preventDefault();
+    chooseMission(Number(card.dataset.missionIndex));
+    return;
+  }
+  const action=e.target.closest('[data-mission-action]');
+  if(action){
+    e.preventDefault();
+    if(action.dataset.missionAction==='complete')completeMissionRequest();
+    
+  }
+});
+
+
+function routineEditorRows(containerId,items,prefix){
+  const box=document.getElementById(containerId);
+  if(!box)return;
+  const parsed=parseLearning(items);
+  box.innerHTML=parsed.map((x,i)=>`
+    <div class="routine-edit-row" data-prefix="${prefix}" data-index="${i}">
+      <label class="routine-onoff">
+        <input type="checkbox" class="re-active" ${x.active?'checked':''}>
+        <span>${x.active?'ON':'OFF'}</span>
+      </label>
+      <input class="re-icon" value="${esc(x.icon)}" aria-label="아이콘">
+      <input class="re-name" value="${esc(x.name)}" aria-label="이름">
+      <input class="re-time" value="${esc(x.time)}" aria-label="시간">
+      <input class="re-domain" value="${esc(x.domain)}" aria-label="영역">
+    </div>`).join('');
+  box.querySelectorAll('.re-active').forEach(cb=>cb.addEventListener('change',()=>{
+    cb.nextElementSibling.textContent=cb.checked?'ON':'OFF';
+    cb.closest('.routine-edit-row').classList.toggle('off',!cb.checked);
+  }));
+  box.querySelectorAll('.routine-edit-row').forEach(row=>row.classList.toggle('off',!row.querySelector('.re-active').checked));
+}
+function collectRoutineEditor(containerId){
+  return [...document.querySelectorAll(`#${containerId} .routine-edit-row`)].map(row=>{
+    const name=row.querySelector('.re-name').value.trim()||'활동';
+    const icon=row.querySelector('.re-icon').value.trim()||'✨';
+    const time=row.querySelector('.re-time').value.trim()||'10분';
+    const domain=row.querySelector('.re-domain').value.trim()||'기타';
+    const active=row.querySelector('.re-active').checked?'ON':'OFF';
+    return `${name}|${icon}|${time}|${domain}|${active}`;
+  });
+}
+
+const settingDefs=[['approvalSet','🔐 승인센터'],['basic','⚙️ 기본 설정'],['routineSet','📋 루틴 관리'],['readingSet','📚 독서·포인트'],['missionSet','🎴 특별미션'],['shopSet','🏪 상점 관리'],['diarySet','🌙 달빛일기'],['dataSet','💾 데이터 관리']];function unlockSettings(){if(pinInput.value!==state.settings.pin)return toast('PIN이 맞지 않아요.');pinGate.style.display='none';settingsBody.style.display='grid';renderSettings()}function renderSettings(){settingTabs.innerHTML=settingDefs.map(([id,l])=>`<button class="${settingTab===id?'active':''}" onclick="settingTab='${id}';renderSettings()">${l}</button>`).join('');const s=state.settings;let h='';if(settingTab==='approvalSet'){
+  const pendingShop=(state.shopRequests||[]).filter(r=>r.status==='pending');
+  const reviewedShop=(state.shopRequests||[]).filter(r=>r.status!=='pending').slice(0,8);
+  h=`<div class="parent-center-hero">
+      <img src="assets/ruby_idle.png" alt="루비">
+      <div><h2>🌙 부모 승인센터</h2><p>아이 화면에서는 PIN을 입력하지 않아요. 요청을 나중에 여기서 확인해 주세요.</p></div>
+    </div>
+    <div class="setting-section approval-section">
+      <h3>🎴 오늘의 특별미션</h3>
+      <div class="mission-approval-card ${state.mission.done?'complete':state.mission.pending?'waiting':''}">
+        ${state.mission.done
+          ? '✅ 오늘 미션을 승인했어요.'
+          : state.mission.pending
+            ? `⏳ 승인 대기 중<br><small>${state.mission.choice!==null?esc(state.settings.missions[state.mission.choice]||'오늘의 특별미션'):''}</small>`
+            : state.mission.choice!==null
+              ? '🟣 미션을 선택했지만 아직 완료 요청 전이에요.'
+              : '⚪ 아직 오늘의 미션을 선택하지 않았어요.'}
+      </div>
+      ${state.mission.pending&&!state.mission.done
+        ? '<div class="approval-actions"><button class="btn gold" onclick="approveMissionFromSettings()">미션 승인</button><button class="btn soft" onclick="rejectMissionFromSettings()">이번에는 보류</button></div>'
+        : ''}
+    </div>
+    <div class="setting-section approval-section">
+      <h3>🏪 포인트상점 요청 <span class="approval-count">${pendingShop.length}</span></h3>
+      <div class="approval-request-list">
+        ${pendingShop.length
+          ? pendingShop.map(r=>`<div class="approval-request-card">
+              <div class="request-icon">${r.icon||'🎁'}</div>
+              <div class="request-body"><b>${esc(r.name)}</b><small>${r.price}P · ${new Date(r.requestedAt).toLocaleString('ko-KR')}</small></div>
+              <div class="approval-actions"><button class="btn gold" onclick="approveShopRequest('${r.id}')">승인</button><button class="btn soft" onclick="rejectShopRequest('${r.id}')">보류</button></div>
+            </div>`).join('')
+          : '<div class="empty-approval">현재 기다리는 구매 요청이 없어요.</div>'}
+      </div>
+    </div>
+    <div class="setting-section approval-section">
+      <h3>🗂 최근 처리 기록</h3>
+      <div class="approval-history">
+        ${reviewedShop.length
+          ? reviewedShop.map(r=>`<div class="history-row ${r.status}">
+              <span>${r.status==='approved'?'✅':'↩️'} ${r.icon||'🎁'} ${esc(r.name)}</span>
+              <small>${r.status==='approved'?'승인':'보류'} · ${r.price}P</small>
+            </div>`).join('')
+          : '<div class="empty-approval">아직 처리 기록이 없어요.</div>'}
+      </div>
+      ${reviewedShop.length?'<button class="btn soft" onclick="clearReviewedShopRequests()">처리 기록 정리</button>':''}
+    </div>`;
+}
+if(settingTab==='basic')h=`<div class="setting-section"><h3>앱 기본</h3><div class="form"><label>앱 제목<input id="sTitle" value="${esc(s.appTitle)}"></label><label>부제<input id="sSub" value="${esc(s.appSubtitle)}"></label><label>부모 PIN<input id="sPin" value="${esc(s.pin)}" maxlength="4"></label><label>오늘의 서프라이즈 포인트<input id="sSurprise" type="number" value="${s.surprisePoint}"></label><label class="switch">효과음 <input id="sSound" type="checkbox" ${s.sound?'checked':''}></label><label class="switch">배경음 <input id="sBgm" type="checkbox" ${s.bgm?'checked':''}></label></div></div><div class="setting-section"><h3>🦄 루비의 매일 한마디</h3><p class="smallnote">한 줄에 한 문장씩 입력하면 날짜에 따라 매일 바뀝니다.</p><textarea id="sRubyMessages" style="width:100%;min-height:150px">${(s.rubyMessages||[]).join('\n')}</textarea></div><div class="setting-section"><h3>☀️ 오전 마음 체크</h3><label>질문<input id="sMorningCheckQuestion" value="${esc(s.morningCheckQuestion||'')}"></label><p class="smallnote">답변을 한 줄에 하나씩 입력하세요.</p><textarea id="sMorningCheckOptions" style="width:100%;min-height:150px">${(s.morningCheckOptions||[]).join('\n')}</textarea></div><button class="btn" onclick="saveBasic()">기본 설정 저장</button>`;if(settingTab==='routineSet')h=`<div class="setting-section"><h3>📚 선택형 학습루틴 10개</h3><p class="smallnote">각 활동의 ON/OFF를 스위치로 선택하고 이름·아이콘·시간·영역도 수정할 수 있어요.</p><div class="routine-editor-head"><span>사용</span><span>아이콘</span><span>활동명</span><span>시간</span><span>영역</span></div><div id="learningEditor" class="routine-editor"></div></div><div class="setting-section"><h3>🧠 선택형 두뇌루틴 10개</h3><div class="routine-editor-head"><span>사용</span><span>아이콘</span><span>활동명</span><span>시간</span><span>영역</span></div><div id="brainEditor" class="routine-editor"></div><div class="editor-grid"><label>활동 1개 EXP<input id="sBrainExpPerTask" type="number" value="${s.brainExpPerTask}"></label><label>레벨업 필요 EXP<input id="sBrainLevelExp" type="number" value="${s.brainLevelExp}"></label><label>레벨업 보석<input id="sBrainLevelGem" type="number" value="${s.brainLevelGem}"></label></div></div><div class="setting-section"><h3>🏠 필수 생활루틴</h3><div class="editor-grid"><label>🌞 아침<textarea id="sMorningHabits">${s.morningHabits.join('\n')}</textarea></label><label>🏫 하교 후<textarea id="sAfterHabits">${s.afterHabits.join('\n')}</textarea></label><label>🌙 저녁<textarea id="sEveningHabits">${s.eveningHabits.join('\n')}</textarea></label></div><label>완료 1개 포인트<input id="sRoutinePoint" type="number" value="${s.routinePoint}"></label></div><button class="btn" onclick="saveRoutineSettings()">루틴 저장</button>`;if(settingTab==='readingSet')h=`<div class="setting-section"><h3>독서·포인트 규칙</h3><div class="editor-grid"><label>책 1권 포인트<input id="sBookPoint" type="number" value="${s.bookPoint}"></label><label>추가활동 포인트<input id="sActivityPoint" type="number" value="${s.activityPoint}"></label><label>보석 교환 필요 개수<input id="sGemGoal" type="number" value="${s.gemGoal}"></label><label>보석 교환 포인트<input id="sGemExchange" type="number" value="${s.gemExchange}"></label><label>한글책 목표<input id="sKoGoal" type="number" value="${s.koGoal}"></label><label>영어책 목표<input id="sEnGoal" type="number" value="${s.enGoal}"></label><label>세계관 지역 개방 간격<input id="sWorldStep" type="number" value="${s.worldStep||100}"></label></div><p class="smallnote">기본값 100권: 100·200·300·400·500·600·700·800·900·1,000권에 총 10개 지역이 열립니다.</p></div><div class="setting-section"><h3>📚 책 분류와 보너스 포인트</h3><p class="smallnote">한 줄에 분류명|추가포인트 형식으로 입력하세요. 예: 한글 음독|10</p><textarea id="sBookCategories" style="width:100%;min-height:150px">${(s.bookCategories||[]).map(x=>x[1]+'|'+x[2]).join('\n')}</textarea></div><div class="setting-section"><h3>✨ 독서 추가 활동</h3><div class="activity-editor-note">한 줄에 활동명|포인트 형식으로 입력하세요. 첫 줄은 ‘추가 활동 없음|0’을 권장합니다.</div><textarea id="sAdditionalActivities" style="width:100%;min-height:190px;margin-top:8px">${(s.additionalActivities||[]).map(x=>x[1]+'|'+x[2]).join('\n')}</textarea></div><button class="btn" onclick="saveReadingSettings()">독서 설정 저장</button>`;if(settingTab==='missionSet')h=`<div class="setting-section"><h3>카드 10장</h3><p class="smallnote">한 줄에 카드 하나씩 입력하세요.</p><textarea id="sMissions" style="width:100%;min-height:260px">${s.missions.join('\n')}</textarea><label>완료 포인트<input id="sMissionPoint" type="number" value="${s.missionPoint}"></label><label class="setting-check"><span><b>부모 승인 필요</b><br><small>끄면 아이가 완료 버튼을 누르는 즉시 포인트가 지급됩니다.</small></span><input id="sMissionApproval" type="checkbox" ${s.missionApprovalRequired?'checked':''}></label></div><button class="btn" onclick="saveMissionSettings()">특별미션 저장</button> <button class="btn soft" onclick="resetMissionToday()">오늘 선택 초기화</button>`;if(settingTab==='shopSet')h=`<div class="setting-section"><h3>상점 상품</h3><p class="smallnote">한 줄에 상품명|가격|아이콘 형식입니다.</p><textarea id="sShop" style="width:100%;min-height:260px">${s.shop.map(x=>x.join('|')).join('\n')}</textarea></div><button class="btn" onclick="saveShopSettings()">상점 저장</button>`;if(settingTab==='diarySet')h=`<div class="setting-section"><h3>🌙 체크형 달빛일기</h3><p class="smallnote">아이에게는 질문마다 체크형 답안으로 보입니다. 형식: 제목||질문||선택지1|선택지2|선택지3</p><textarea id="sMoonDiarySteps" style="width:100%;min-height:300px">${(s.moonDiarySteps||[]).map(x=>x.title+'||'+x.question+'||'+(x.options||[]).join('|')).join('\n')}</textarea><label>자유 한 줄 안내문<input id="sMoonDiaryFreePrompt" value="${esc(s.moonDiaryFreePrompt||'')}"></label><label>완성 보상 포인트<input id="sMoonDiaryReward" type="number" value="${s.moonDiaryRewardPoint||0}"></label><p class="smallnote">마무리 문구를 한 줄에 하나씩 입력하세요.</p><textarea id="sMoonDiaryClosing" style="width:100%;min-height:120px">${(s.moonDiaryClosing||[]).join('\n')}</textarea></div><button class="btn" onclick="saveDiarySettings()">달빛일기 저장</button>`;if(settingTab==='dataSet')h=`<div class="backup-center-hero">
+  <div class="backup-orb">💾</div>
+  <div><h2>엄마 전용 백업센터</h2><p>아이의 독서·루틴·달빛일기·포인트·설정을 안전하게 보관해요.</p></div>
+</div>
+<div class="setting-section backup-status-card">
+  <h3>현재 저장 상태</h3>
+  <div class="backup-status-grid">
+    <div><small>마지막 자동 백업</small><strong>${getLastBackupLabel()}</strong></div>
+    <div><small>보관 중인 자동 백업</small><strong>${getBackupSnapshots().length}개</strong></div>
+    <div><small>현재 데이터 크기</small><strong>${formatBytes(new Blob([JSON.stringify(state)]).size)}</strong></div>
+  </div>
+</div>
+<div class="setting-section">
+  <h3>자동 백업</h3>
+  <label class="switch">하루 한 번 자동 백업 <input id="sAutoBackup" type="checkbox" ${s.autoBackup?'checked':''}></label>
+  <label>자동 백업 보관 개수<input id="sBackupRetention" type="number" min="3" max="60" value="${s.backupRetention||14}"></label>
+  <p class="smallnote">자동 백업은 이 기기의 브라우저 안에 날짜별로 보관돼요. Safari 데이터를 삭제하면 함께 없어질 수 있으므로 가끔 JSON 파일도 받아 두세요.</p>
+  <button class="btn" onclick="saveBackupSettings()">자동 백업 설정 저장</button>
+</div>
+<div class="setting-section">
+  <h3>수동 백업 파일</h3>
+  <button class="btn gold" onclick="exportData()">💾 지금 백업 파일 받기</button>
+  <label class="btn soft backup-file-label">📂 백업 파일 불러오기<input type="file" accept=".json,application/json" style="display:none" onchange="importData(event)"></label>
+  <p class="smallnote">백업 파일에는 독서기록, 포인트, 보석, 달빛일기, 루틴과 설정이 모두 포함돼요.</p>
+</div>
+<div class="setting-section parent-memo-section">
+  <h3>📝 엄마의 오늘 메모</h3>
+  <p class="smallnote">${esc(s.parentMemoPrompt||'오늘 아이가 즐거워한 점과 어려워한 점을 기록해 주세요.')}</p>
+  <div class="parent-memo-editor">
+    <input id="parentMemoDate" type="date" value="${today()}">
+    <textarea id="parentMemoText" maxlength="1000" placeholder="예: 독서 화면은 스스로 잘 눌렀고, 생활루틴에서는 나중에 하기 버튼을 자주 사용함. 루비 반응을 좋아했음."></textarea>
+    <div class="memo-feeling-row">
+      <label>아이 반응
+        <select id="parentMemoMood">
+          <option value="매우 좋아함">😍 매우 좋아함</option>
+          <option value="좋아함">😊 좋아함</option>
+          <option value="보통">😐 보통</option>
+          <option value="어려워함">😟 어려워함</option>
+          <option value="거부함">😣 거부함</option>
+        </select>
+      </label>
+      <label>가장 오래 본 화면
+        <select id="parentMemoFavorite">
+          <option>홈</option><option>학습루틴</option><option>두뇌루틴</option><option>생활루틴</option>
+          <option>독서 프로젝트</option><option>특별미션</option><option>세계관</option>
+          <option>독서 기록 통장</option><option>달빛은행</option><option>포인트 상점</option>
+          <option>달빛일기</option><option>기타</option>
+        </select>
+      </label>
+    </div>
+    <button id="saveParentMemoBtn" type="button" class="btn gold" onclick="saveParentMemo()">오늘 메모 저장</button>
+  </div>
+  <div class="parent-memo-history">${renderParentMemoHistory()}</div>
+</div>
+<div class="setting-section">
+  <h3>엄마 메모 설정</h3>
+  <label>메모 안내 문구<input id="sParentMemoPrompt" value="${esc(s.parentMemoPrompt||'')}"></label>
+  <button class="btn" onclick="saveParentMemoSettings()">안내 문구 저장</button>
+</div>
+<div class="setting-section">
+  <h3>자동 백업 기록</h3>
+  <div class="backup-snapshot-list">${renderBackupSnapshotList()}</div>
+  <div class="backup-actions">
+    <button class="btn soft" onclick="createManualSnapshot()">현재 상태 보관</button>
+    <button class="btn soft" onclick="restoreLatestSnapshot()">최근 자동백업 복원</button>
+    <button class="btn danger" onclick="clearBackupSnapshots()">자동백업 기록 삭제</button>
+  </div>
+</div>
+<div class="setting-section danger-zone">
+  <h3>초기화</h3>
+  <p class="smallnote">초기화 전에 반드시 백업 파일을 받아 주세요.</p>
+  <button class="btn danger" onclick="resetAll()">모든 데이터 초기화</button>
+</div>`;settingContent.innerHTML=h;
+if(settingTab==='dataSet'){
+  const memoBtn=document.getElementById('saveParentMemoBtn');
+  if(memoBtn){
+    memoBtn.onclick=function(e){e.preventDefault();saveParentMemo();};
+  }
+}
+if(settingTab==='routineSet'){routineEditorRows('learningEditor',s.learning,'learning');routineEditorRows('brainEditor',s.brainRoutine,'brain')}}
+function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}function lines(id){return document.getElementById(id).value.split(/\n/).map(x=>x.trim()).filter(Boolean)}function saveBasic(){Object.assign(state.settings,{appTitle:sTitle.value.trim(),appSubtitle:sSub.value.trim(),pin:sPin.value.trim()||state.settings.pin,surprisePoint:+sSurprise.value||20,sound:sSound.checked,bgm:sBgm.checked,rubyMessages:lines('sRubyMessages'),morningCheckQuestion:sMorningCheckQuestion.value.trim(),morningCheckOptions:lines('sMorningCheckOptions')});save();toast('기본 설정을 저장했어요.')}
+function saveRoutineSettings(){Object.assign(state.settings,{learning:collectRoutineEditor('learningEditor'),brainRoutine:collectRoutineEditor('brainEditor'),brainExpPerTask:+sBrainExpPerTask.value||20,brainLevelExp:+sBrainLevelExp.value||100,brainLevelGem:+sBrainLevelGem.value||1,morningHabits:lines('sMorningHabits'),afterHabits:lines('sAfterHabits'),eveningHabits:lines('sEveningHabits'),routinePoint:+sRoutinePoint.value||10});save();toast('학습·두뇌·생활루틴 설정을 저장했어요.');}
+function saveReadingSettings(){Object.assign(state.settings,{bookPoint:+sBookPoint.value||10,activityPoint:+sActivityPoint.value||50,gemGoal:+sGemGoal.value||10,gemExchange:+sGemExchange.value||120,koGoal:+sKoGoal.value||1000,enGoal:+sEnGoal.value||1000,worldStep:+sWorldStep.value||100,bookCategories:lines('sBookCategories').map((line,i)=>{const parts=line.split('|');const name=(parts[0]||'분류').trim(),bonus=Number(parts[1])||0;return['cat'+i,name,bonus]}),additionalActivities:lines('sAdditionalActivities').map((line,i)=>{const parts=line.split('|');const name=(parts[0]||'활동').trim(),points=Number(parts[1])||0;return['act'+i,name,points]})});save();toast('독서 설정을 저장했어요.')}function saveDiarySettings(){
+  const steps=lines('sMoonDiarySteps').map(line=>{const p=line.split('||');return{title:(p[0]||'단계').trim(),question:(p[1]||'골라 주세요').trim(),options:(p[2]||'').split('|').map(x=>x.trim()).filter(Boolean)}}).filter(x=>x.options.length);
+  state.settings.moonDiarySteps=steps;state.settings.moonDiaryFreePrompt=sMoonDiaryFreePrompt.value.trim();state.settings.moonDiaryRewardPoint=+sMoonDiaryReward.value||0;state.settings.moonDiaryClosing=lines('sMoonDiaryClosing');save();toast('달빛일기 설정을 저장했어요.');
+}
+function saveMissionSettings(){state.settings.missions=lines('sMissions').slice(0,10);state.settings.missionPoint=+sMissionPoint.value||50;state.settings.missionApprovalRequired=sMissionApproval.checked;save();toast('특별미션을 저장했어요.')}function resetMissionToday(){state.mission={date:today(),choice:null,done:false,pending:false};save();toast('오늘의 카드를 초기화했어요.')}function saveShopSettings(){state.settings.shop=lines('sShop').map(x=>{const [n,p,i='🎁']=x.split('|');return[n,+p||0,i]}).filter(x=>x[0]);save();toast('상점을 저장했어요.')}
+
+function saveParentMemo(){
+  try{
+    if(!Array.isArray(state.parentMemos))state.parentMemos=[];
+    const textEl=document.getElementById('parentMemoText');
+    const dateEl=document.getElementById('parentMemoDate');
+    const moodEl=document.getElementById('parentMemoMood');
+    const favoriteEl=document.getElementById('parentMemoFavorite');
+    const text=textEl?textEl.value.trim():'';
+    if(!text){toast('오늘의 관찰 내용을 적어 주세요.');if(textEl)textEl.focus();return;}
+    const date=(dateEl&&dateEl.value)?dateEl.value:today();
+    const mood=(moodEl&&moodEl.value)?moodEl.value:'보통';
+    const favorite=(favoriteEl&&favoriteEl.value)?favoriteEl.value:'기타';
+    const existingIndex=state.parentMemos.findIndex(m=>m&&m.date===date);
+    const memo={id:existingIndex>=0?(state.parentMemos[existingIndex].id||'memo_'+Date.now()):'memo_'+Date.now(),date,mood,favorite,text,savedAt:new Date().toISOString()};
+    if(existingIndex>=0){
+      if(!confirm(date+'에 이미 메모가 있어요. 새 내용으로 바꿀까요?'))return;
+      state.parentMemos[existingIndex]=memo;
+    }else{
+      state.parentMemos.unshift(memo);
+    }
+    state.parentMemos.sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+    storageSet(JSON.stringify(state));
+    try{createSnapshot('parent-memo');}catch(snapshotError){console.warn('parent memo snapshot skipped',snapshotError);}
+    const history=document.querySelector('.parent-memo-history');
+    if(history)history.innerHTML=renderParentMemoHistory();
+    if(textEl)textEl.value='';
+    toast('📝 엄마 메모를 저장했어요.');
+    safeRender('stats',renderStats);
+  }catch(error){
+    console.error('saveParentMemo failed',error);
+    toast('메모 저장 중 오류가 생겼어요. 다시 눌러 주세요.');
+  }
+}
+function deleteParentMemo(id){
+  if(!confirm('이 메모를 삭제할까요?'))return;
+  state.parentMemos=state.parentMemos.filter(m=>m.id!==id);
+  save();
+  toast('메모를 삭제했어요.');
+  renderSettings();
+}
+function editParentMemo(id){
+  const m=state.parentMemos.find(x=>x.id===id);
+  if(!m)return;
+  const dateInput=document.getElementById('parentMemoDate');
+  const textInput=document.getElementById('parentMemoText');
+  const moodInput=document.getElementById('parentMemoMood');
+  const favoriteInput=document.getElementById('parentMemoFavorite');
+  if(dateInput)dateInput.value=m.date;
+  if(textInput){textInput.value=m.text;textInput.focus();}
+  if(moodInput)moodInput.value=m.mood;
+  if(favoriteInput)favoriteInput.value=m.favorite;
+}
+function renderParentMemoHistory(){
+  const list=(state.parentMemos||[]).slice(0,30);
+  if(!list.length)return '<div class="empty-approval">아직 저장된 엄마 메모가 없어요.</div>';
+  return `<div class="memo-history-title"><b>최근 실사용 메모</b><small>${state.parentMemos.length}일 기록</small></div>`+
+    list.map(m=>`<article class="parent-memo-card">
+      <header><b>${m.date}</b><span>${esc(m.mood)} · ${esc(m.favorite)}</span></header>
+      <p>${esc(m.text).replace(/\n/g,'<br>')}</p>
+      <div><button class="btn soft" onclick="editParentMemo('${m.id}')">수정</button><button class="btn danger" onclick="deleteParentMemo('${m.id}')">삭제</button></div>
+    </article>`).join('');
+}
+function saveParentMemoSettings(){
+  state.settings.parentMemoPrompt=(document.getElementById('sParentMemoPrompt')?.value||'').trim()||defaults.settings.parentMemoPrompt;
+  save();
+  toast('엄마 메모 안내 문구를 저장했어요.');
+  renderSettings();
+}
+function getParentMemoPrintHtml(){
+  const list=(state.parentMemos||[]).slice(0,14);
+  if(!list.length)return '<p>기록 없음</p>';
+  return list.map(m=>`<p><b>${m.date} · ${esc(m.mood)} · ${esc(m.favorite)}</b><br>${esc(m.text).replace(/\n/g,'<br>')}</p>`).join('');
+}
+
+const BACKUP_KEY='projectLunaBackupSnapshotsV2';
+
+function getBackupSnapshots(){
+  try{
+    const raw=localStorage.getItem(BACKUP_KEY);
+    const parsed=raw?JSON.parse(raw):[];
+    return Array.isArray(parsed)?parsed:[];
+  }catch(e){
+    console.warn('backup snapshots read failed',e);
+    return [];
+  }
+}
+function setBackupSnapshots(list){
+  try{
+    localStorage.setItem(BACKUP_KEY,JSON.stringify(list));
+    return true;
+  }catch(e){
+    console.error('backup snapshots save failed',e);
+    toast('자동 백업 저장 공간이 부족해요. JSON 백업 파일을 받아 주세요.');
+    return false;
+  }
+}
+function createSnapshot(reason='auto'){
+  const now=new Date();
+  const snapshot={id:'snap_'+now.getTime(),createdAt:now.toISOString(),reason,data:JSON.parse(JSON.stringify(state))};
+  const keep=Math.max(3,Math.min(60,Number(state.settings.backupRetention||14)));
+  const list=getBackupSnapshots();
+  list.unshift(snapshot);
+  if(setBackupSnapshots(list.slice(0,keep))){
+    state.settings.lastBackupDate=now.toISOString();
+    storageSet(JSON.stringify(state));
+    return snapshot;
+  }
+  return null;
+}
+function maybeAutoBackup(){
+  if(!state.settings.autoBackup)return;
+  const last=state.settings.lastBackupDate?state.settings.lastBackupDate.slice(0,10):'';
+  if(last!==today())createSnapshot('auto');
+}
+function getLastBackupLabel(){
+  const date=state.settings.lastBackupDate;
+  if(!date)return '아직 없음';
+  try{return new Date(date).toLocaleString('ko-KR');}catch(e){return date;}
+}
+function formatBytes(bytes){
+  if(bytes<1024)return bytes+' B';
+  if(bytes<1024*1024)return (bytes/1024).toFixed(1)+' KB';
+  return (bytes/(1024*1024)).toFixed(1)+' MB';
+}
+function renderBackupSnapshotList(){
+  const list=getBackupSnapshots();
+  if(!list.length)return '<div class="empty-approval">아직 자동 백업 기록이 없어요.</div>';
+  return list.slice(0,20).map(s=>`<div class="backup-snapshot-row">
+    <div><b>${s.reason==='auto'?'🌙 자동 백업':'💾 안전 백업'}</b><small>${new Date(s.createdAt).toLocaleString('ko-KR')}</small></div>
+    <button class="btn soft" onclick="restoreSnapshot('${s.id}')">복원</button>
+  </div>`).join('');
+}
+function refreshBackupCenter(){
+  if(settingTab==='dataSet'&&settingsBody&&settingsBody.style.display==='grid')renderSettings();
+}
+function createManualSnapshot(){
+  if(createSnapshot('manual')){toast('💾 현재 상태를 보관했어요.');refreshBackupCenter();}
+}
+function restoreSnapshot(id){
+  const snap=getBackupSnapshots().find(x=>x.id===id);
+  if(!snap)return toast('백업 기록을 찾지 못했어요.');
+  if(!confirm('이 백업 상태로 복원할까요? 현재 상태는 먼저 안전 백업됩니다.'))return;
+  createSnapshot('before-restore');
+  state=deepMerge(defaults,JSON.parse(JSON.stringify(snap.data)));
+  storageSet(JSON.stringify(state));
+  toast('백업을 복원했어요. 화면을 새로고침합니다.');
+  setTimeout(()=>location.reload(),500);
+}
+function restoreLatestSnapshot(){
+  const snap=getBackupSnapshots()[0];
+  if(!snap)return toast('복원할 자동 백업이 없어요.');
+  restoreSnapshot(snap.id);
+}
+function clearBackupSnapshots(){
+  if(!confirm('자동 백업 기록만 모두 삭제할까요? 현재 앱 데이터는 유지됩니다.'))return;
+  localStorage.removeItem(BACKUP_KEY);
+  toast('자동 백업 기록을 삭제했어요.');
+  refreshBackupCenter();
+}
+function saveBackupSettings(){
+  state.settings.autoBackup=sAutoBackup.checked;
+  state.settings.backupRetention=Math.max(3,Math.min(60,+sBackupRetention.value||14));
+  save();
+  if(state.settings.autoBackup)maybeAutoBackup();
+  toast('자동 백업 설정을 저장했어요.');
+  refreshBackupCenter();
+}
+function exportData(){
+  const payload={app:'PROJECT LUNA',version:'2.0-real-use',exportedAt:new Date().toISOString(),data:state};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='PROJECT_LUNA_V1_1_backup_'+today()+'.json';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),500);
+  toast('💾 백업 파일을 만들었어요.');
+}
+function importData(e){
+  const f=e.target.files&&e.target.files[0];
+  if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const parsed=JSON.parse(r.result);
+      const incoming=parsed&&parsed.data?parsed.data:parsed;
+      if(!incoming||typeof incoming!=='object')throw new Error('invalid backup');
+      createSnapshot('before-import');
+      state=deepMerge(defaults,incoming);
+      storageSet(JSON.stringify(state));
+      toast('백업을 복원했어요. 화면을 새로고침합니다.');
+      setTimeout(()=>location.reload(),600);
+    }catch(err){
+      console.error(err);
+      toast('백업 파일을 읽지 못했어요.');
+    }
+  };
+  r.readAsText(f);
+}
+
+function resetAll(){if(confirm('정말 모든 데이터를 초기화할까요?')){storageRemove();location.reload()}}
+function safeRender(name,fn){try{fn()}catch(e){console.error(name,e)}}
+function renderAll(){ensureDay();safeRender('book categories',renderBookCategories);safeRender('additional activities',renderAdditionalActivities);safeRender('home',renderHome);safeRender('routine',renderRoutine);safeRender('brain',renderBrain);safeRender('habits',renderHabits);safeRender('books',renderBooks);safeRender('mission',renderMission);safeRender('map',renderMap);safeRender('bank',renderBank);safeRender('shop',renderShop);safeRender('stats',renderStats);if(settingsBody&&settingsBody.style.display==='grid')safeRender('settings',renderSettings)}function updateClock(){const d=new Date(),days=['일','월','화','수','목','금','토'];homeDate.textContent=`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} (${days[d.getDay()]})`;homeTime.textContent=d.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+
+Object.assign(window,{
+  openMorningCheck,saveMorningCheck,openMoonDiary,selectMoonDiaryAnswer,moonDiaryNext,chooseMoonDiaryOption,moonDiaryBack,restartMoonDiary,saveMoonDiary,saveSimpleMoonDiary,openMorningMood,openDayReflection,saveMorningMood,saveDayReflection,
+  chooseMission,completeMissionRequest,approveMission,approveMissionFromSettings,completeHabit,skipHabit,skipRoutine,startLearningTimer,completeBrain,skipBrain,openBrainResult,bindWorldMapClicks,openWorldRegion,enterWorldRegion,closeWorldRegion,approveShopRequest,rejectShopRequest,clearReviewedShopRequests,rejectMissionFromSettings,
+  playSound,sparkleBurst,saveParentMemo,deleteParentMemo,editParentMemo,saveParentMemoSettings,createManualSnapshot,restoreSnapshot,restoreLatestSnapshot,clearBackupSnapshots,saveBackupSettings
+});
+
+function init(){maybeAutoBackup();buildNav();const first=document.querySelector('.nav button');if(first)first.classList.add('active');updateClock();setInterval(updateClock,1000);renderAll()}init();
+</script></main></div><div id="printReport"></div></body></html>

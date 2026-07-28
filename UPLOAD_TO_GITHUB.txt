@@ -1,0 +1,10 @@
+PROJECT LUNA V2.0 GitHub Pages 업로드 방법
+
+1. 이 ZIP을 풀면 index.html, styles.css, assets 폴더, .nojekyll이 바로 보입니다.
+2. GitHub project-luna 저장소 최상위(root)에 이 파일들을 모두 업로드하세요.
+3. 기존 파일과 같은 이름이 나오면 Replace files 또는 덮어쓰기를 선택하세요.
+4. 이미지 파일은 assets 폴더 안에 그대로 두세요.
+5. Settings > Pages > Deploy from a branch > main > /(root) > Save
+6. 주소: https://maylucymom.github.io/project-luna/
+
+V2 변경: 왼쪽 목록 높이 맞춤, 가운데 해야 할 일 확대, 오른쪽 캐릭터 축소.
