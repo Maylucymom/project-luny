@@ -1,6 +1,6 @@
 
 :root{--deep:#281838;--purple:#7449aa;--purple2:#9d70cf;--pink:#e879ad;--gold:#e4b95e;--cream:#fff8ef;--glass:rgba(255,247,255,.57);--darkglass:rgba(66,40,78,.47);--line:rgba(255,255,255,.66);--shadow:0 14px 38px rgba(43,18,59,.22);font-family:system-ui,-apple-system,"Pretendard","Noto Sans KR",sans-serif}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#24142e}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.app{width:100vw;height:100dvh;display:flex;align-items:center;justify-content:center;background:#211229}.stage{position:relative;width:min(100vw,calc(100dvh*16/9));height:min(100dvh,calc(100vw*9/16));overflow:hidden;background:#f7eff8}.bg{position:absolute;inset:0;background:url('assets/home_library.jpg') center/cover no-repeat}.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,8,38,.12),transparent 22%,transparent 78%,rgba(25,8,38,.22));pointer-events:none}.scene{position:absolute;inset:0;display:none}.scene.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(6px)}}.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15);box-shadow:var(--shadow)}.darkglass{background:var(--darkglass);border:1px solid rgba(255,240,255,.52);backdrop-filter:blur(14px);color:#fff;box-shadow:var(--shadow)}.topbar{position:absolute;z-index:40;left:1.7%;right:1.7%;top:1.6%;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand,.hud span{padding:8px 12px;border-radius:15px;font-weight:900}.hud{display:flex;gap:7px}.title{
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#24142e}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.app{width:100vw;height:100dvh;display:flex;align-items:center;justify-content:center;background:#211229}.stage{position:relative;width:min(100vw,calc(100dvh*16/9));height:min(100dvh,calc(100vw*9/16));overflow:hidden;background:#f7eff8}.bg{position:absolute;inset:0;background:url('home_library.jpg') center/cover no-repeat}.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,8,38,.12),transparent 22%,transparent 78%,rgba(25,8,38,.22));pointer-events:none}.scene{position:absolute;inset:0;display:none}.scene.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(6px)}}.glass{background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15);box-shadow:var(--shadow)}.darkglass{background:var(--darkglass);border:1px solid rgba(255,240,255,.52);backdrop-filter:blur(14px);color:#fff;box-shadow:var(--shadow)}.topbar{position:absolute;z-index:40;left:1.7%;right:1.7%;top:1.6%;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand,.hud span{padding:8px 12px;border-radius:15px;font-weight:900}.hud{display:flex;gap:7px}.title{
       font-family:"MaruBuri","KoPub Batang","Noto Serif KR","Nanum Myeongjo",serif;
       font-weight:800;
       letter-spacing:-.045em;
@@ -105,7 +105,7 @@
   border-radius:22px;
   background:
     linear-gradient(rgba(15,8,35,.05),rgba(15,8,35,.05)),
-    url("assets/world_map_master.png") center/cover no-repeat;
+    url("world_map_master.png") center/cover no-repeat;
   box-shadow:0 18px 48px rgba(35,14,55,.28);
   border:1px solid rgba(255,236,197,.58)
 }
@@ -209,7 +209,7 @@
 .world-map-screen{
   background-image:
     linear-gradient(rgba(15,8,35,.04),rgba(15,8,35,.04)),
-    url("assets/world_map_master.png")!important;
+    url("world_map_master.png")!important;
 }
 
 /* 작은 PC 화면에서 추가 압축 */
@@ -1149,7 +1149,7 @@ body,button,input,select,textarea,.title,.screen-title,.home-title h1{
 .world-map-screen{
   background:
     linear-gradient(rgba(15,8,35,.03),rgba(15,8,35,.03)),
-    url("assets/world_map_master.png") center/cover no-repeat!important;
+    url("world_map_master.png") center/cover no-repeat!important;
 }
 @media(max-width:900px){
   .nav{height:66px!important}
@@ -1220,7 +1220,7 @@ body,button,input,select,textarea,.title,.screen-title,.home-title h1{
 .bg{
   background:
     linear-gradient(180deg,rgba(35,13,53,.10),rgba(41,13,49,.02) 58%,rgba(28,9,43,.22)),
-    url("assets/home_library.jpg") center/cover no-repeat!important;
+    url("home_library.jpg") center/cover no-repeat!important;
 }
 .characters{
   left:31%!important;right:28%!important;top:30%!important;bottom:9.8%!important;
@@ -1291,7 +1291,7 @@ body,button,input,select,textarea,.title,.screen-title,.home-title h1{
   border-radius:0!important;border:0!important;
   background:
     linear-gradient(180deg,rgba(15,8,35,.02),rgba(15,8,35,.09)),
-    url("assets/world_map_master.png") center/cover no-repeat!important;
+    url("world_map_master.png") center/cover no-repeat!important;
   box-shadow:none!important;
 }
 #map .world-map-head{left:1.2%!important;top:1.5%!important}
@@ -1759,7 +1759,7 @@ body,button,input,select,textarea,.title,.screen-title,.home-title h1{
   inset:-12%;
   background:
     linear-gradient(180deg,rgba(22,14,53,.14),rgba(20,11,43,.54)),
-    url("assets/world_map_master.png") center/cover no-repeat;
+    url("world_map_master.png") center/cover no-repeat;
   transform:scale(1);
   transition:transform 1.25s cubic-bezier(.2,.8,.2,1),filter .8s ease;
   filter:saturate(1.08) brightness(.88);
@@ -2309,3 +2309,236 @@ body,button,input,select,textarea,.title,.screen-title,.home-title h1{
   #routine .routine-character-stage,#brain .routine-character-stage,#habits .habit-character-stage{width:145px!important;min-width:145px!important;}
   #routine .routine-task-character,#brain .routine-task-character,#habits .habit-task-character{max-width:122px!important;max-height:190px!important;}
 }
+
+
+
+/* =========================================================
+   PROJECT LUNA V2.1 — 여행·관찰일기
+   ========================================================= */
+.travel-content{padding-bottom:18px!important}
+.travel-layout{
+  display:grid;
+  grid-template-columns:minmax(360px,.9fr) minmax(420px,1.1fr);
+  gap:16px;
+  min-height:0;
+  padding:0 10px 12px;
+}
+.travel-editor-card,.travel-list-card{min-height:0;margin:0!important}
+.travel-editor-head,.travel-list-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px
+}
+.travel-editor-head h2,.travel-list-head h2{margin:0;color:#60477c}
+.travel-editor-head p,.travel-list-head p{margin:4px 0 0;color:#7d6b87}
+.travel-camera-badge,.travel-list-head>span{
+  display:grid;place-items:center;width:54px;height:54px;border-radius:18px;
+  font-size:28px;background:linear-gradient(145deg,#fff4cb,#f2ddff);
+  border:1px solid rgba(222,186,87,.75);box-shadow:0 7px 14px rgba(83,54,100,.12)
+}
+.travel-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.travel-form-grid label,.travel-story-label{
+  display:flex;flex-direction:column;gap:6px;font-weight:850;color:#5d4d68
+}
+.travel-form-grid input,.travel-story-label textarea{
+  width:100%;box-sizing:border-box;border:1px solid #d8cbe0;border-radius:13px;
+  padding:11px 12px;background:rgba(255,255,255,.88);font:inherit;color:#493c52
+}
+.travel-story-label{margin-top:12px}
+.travel-story-label textarea{min-height:132px;resize:vertical;line-height:1.55}
+.travel-photo-label input{position:absolute;opacity:0;pointer-events:none}
+.travel-photo-label span{
+  display:flex;align-items:center;justify-content:center;min-height:43px;border-radius:13px;
+  background:linear-gradient(135deg,#7551a7,#b868a1);color:#fff;cursor:pointer;
+  box-shadow:0 4px 0 #583e78
+}
+.travel-photo-preview{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px;min-height:78px
+}
+.travel-photo-empty{
+  grid-column:1/-1;display:grid;place-items:center;min-height:78px;border:2px dashed #d7c8df;
+  border-radius:14px;color:#98889f;background:rgba(255,255,255,.45)
+}
+.travel-preview-item{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:#eee}
+.travel-preview-item img{width:100%;height:100%;object-fit:cover}
+.travel-preview-item button{
+  position:absolute;right:5px;top:5px;width:26px;height:26px;border:0;border-radius:50%;
+  color:#fff;background:rgba(69,44,75,.82);font-size:20px;line-height:1;cursor:pointer
+}
+.travel-actions{display:grid;grid-template-columns:.7fr 1.3fr;gap:10px;margin-top:14px}
+.travel-storage-note{margin:12px 0 0!important}
+.travel-list-card{display:flex;flex-direction:column}
+.travel-diary-list{flex:1;min-height:0;overflow:auto;padding-right:3px}
+.travel-entry-card{
+  border-radius:18px;padding:13px;margin-bottom:12px;background:rgba(255,255,255,.82);
+  border:1px solid rgba(211,190,220,.8);box-shadow:0 7px 16px rgba(75,45,89,.10)
+}
+.travel-entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.travel-entry-top small{color:#8a7793;font-weight:750}
+.travel-entry-top h3{margin:4px 0 8px;color:#59416f;font-size:20px}
+.travel-entry-buttons{display:flex;gap:5px}
+.travel-entry-buttons button{
+  border:0;border-radius:9px;padding:6px 9px;background:#eee5f2;color:#6b5576;font-weight:800;cursor:pointer
+}
+.travel-entry-photos{display:grid;gap:6px;margin:4px 0 9px;border-radius:14px;overflow:hidden}
+.travel-entry-photos.count-1{grid-template-columns:1fr}
+.travel-entry-photos.count-2,.travel-entry-photos.count-3,.travel-entry-photos.count-4{grid-template-columns:1fr 1fr}
+.travel-entry-photos button{border:0;padding:0;background:transparent;cursor:pointer;min-height:120px}
+.travel-entry-photos img{width:100%;height:100%;max-height:260px;object-fit:cover;display:block;border-radius:10px}
+.travel-entry-card>p{margin:8px 2px 1px;line-height:1.65;color:#584d5d}
+.travel-empty{display:grid;place-items:center;text-align:center;min-height:300px;color:#806f88}
+.travel-empty span{font-size:58px}
+.travel-empty b{font-size:19px}
+.travel-empty p{max-width:330px;line-height:1.55}
+.travel-photo-modal{text-align:center}
+.travel-photo-modal img{display:block;max-width:100%;max-height:70vh;margin:0 auto 14px;border-radius:16px;object-fit:contain}
+.travel-stat-card p{max-height:3.2em;overflow:hidden}
+@media(max-width:950px){
+  .travel-layout{grid-template-columns:1fr}
+  .travel-list-card{min-height:430px}
+}
+@media(max-width:600px){
+  .travel-form-grid{grid-template-columns:1fr}
+  .travel-photo-preview{grid-template-columns:repeat(2,1fr)}
+}
+
+
+/* PROJECT LUNA V2.2 — 여행일기 저장 안정화 */
+#travelSaveBtn:disabled{
+  opacity:.45;
+  filter:grayscale(.35);
+  cursor:not-allowed;
+  box-shadow:none;
+}
+#travelSaveBtn.ready{
+  opacity:1;
+  animation:travelSaveReady 1.8s ease-in-out infinite;
+}
+@keyframes travelSaveReady{
+  0%,100%{transform:translateY(0);box-shadow:0 5px 0 #a77a25}
+  50%{transform:translateY(-2px);box-shadow:0 7px 14px rgba(144,101,34,.28)}
+}
+
+/* 부모와 함께하는 놀이 */
+.parent-play-focus .routine-task-number{
+  color:#b14e82;
+  background:#fff0f7;
+  border-color:#edb3d1;
+}
+.parent-play-guide{
+  display:grid;
+  gap:8px;
+  margin:18px 0 2px;
+  padding:15px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#fff8ed,#fff0f7);
+  border:1px solid rgba(227,176,192,.65);
+}
+.parent-play-guide b{color:#8e4e72;font-size:16px}
+.parent-play-guide span:before{content:'♡ ';color:#d4679f;font-weight:900}
+.parent-play-finished{text-align:center;align-items:center}
+.parent-play-bonus{
+  display:inline-flex;
+  margin:12px auto 18px;
+  padding:10px 18px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#ffd8e9,#ffe8a9);
+  color:#8b4d69;
+  font-size:19px;
+  font-weight:950;
+  border:1px solid #e8ba74;
+}
+.parent-play-picker{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  max-height:55vh;
+  overflow:auto;
+}
+.parent-play-picker button{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) auto;
+  align-items:center;
+  gap:8px;
+  padding:12px;
+  border:1px solid #ddcde3;
+  border-radius:14px;
+  background:#fff;
+  color:#5d4968;
+  text-align:left;
+  cursor:pointer;
+}
+.parent-play-picker button:first-letter{font-size:25px}
+.parent-play-picker small{color:#9a7890}
+#brainOverview .routine-chip{cursor:pointer}
+
+
+/* PROJECT LUNA V2.3 — 함께놀이 영역 구분 */
+#brainOverview{
+  display:block;
+}
+.parent-play-category{
+  margin:0 0 12px;
+  padding:0 0 9px;
+  border-bottom:1px solid rgba(190,165,201,.45);
+}
+.parent-play-category:last-child{
+  border-bottom:0;
+}
+.parent-play-category-title{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  margin:0 0 7px 4px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f6e7ff,#fff0d9);
+  border:1px solid rgba(211,176,218,.65);
+  color:#795678;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:-.2px;
+}
+.parent-play-category .routine-chip{
+  width:100%;
+  margin-bottom:6px;
+}
+.parent-play-picker button{
+  grid-template-columns:38px minmax(0,1fr);
+}
+.parent-play-picker button span{
+  grid-row:1/3;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+}
+.parent-play-picker button small{
+  grid-column:2;
+  white-space:normal;
+  line-height:1.35;
+}
+
+
+/* PROJECT LUNA V2.4 — 홈 루틴 실행률 계산 수정 */
+#homeRoutinePct{
+  cursor:help;
+}
+
+.habit-category{margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(190,165,201,.4)}
+.habit-category-title{display:inline-flex;margin:0 0 7px 4px;padding:4px 10px;border-radius:999px;background:#f4eafb;color:#74547e;font-size:12px;font-weight:950}
+.habit-category .habit-chip em{margin-left:auto;color:#927f99;font-style:normal;font-size:11px}
+.travel-entry-photos{display:flex!important;flex-wrap:wrap;gap:8px;background:transparent!important}
+.travel-entry-photos button{width:92px!important;height:92px!important;min-height:92px!important;flex:0 0 92px}
+.travel-entry-photos img{width:92px!important;height:92px!important;object-fit:cover!important;border-radius:12px!important}
+.travel-diary-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:11px;align-content:start}.travel-entry-card{margin:0}
+.book-search-wrap{position:relative}.book-search-results{display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:20;max-height:300px;overflow:auto;background:#fff;border:1px solid #dacde2;border-radius:13px;box-shadow:0 12px 28px rgba(67,40,77,.18)}.book-search-results.open{display:block}
+.book-search-results button{width:100%;display:grid;grid-template-columns:45px 1fr;gap:9px;align-items:center;border:0;border-bottom:1px solid #eee4f1;background:#fff;padding:9px;text-align:left}.book-search-results img,.mini-book-placeholder{width:40px;height:54px;object-fit:cover;border-radius:5px;display:grid;place-items:center;background:#eee6f5}.book-search-results small{display:block;color:#88768e;margin-top:3px}.book-search-empty{padding:14px;color:#88768e}
+.book-cover-upload,.catalog-import-label{display:flex;align-items:center;justify-content:center;min-height:42px;border-radius:12px;background:#eee5f5;color:#70547c;font-weight:850;cursor:pointer}.book-cover-upload input,.catalog-import-label input{position:absolute;opacity:0;pointer-events:none}
+.book-cover-preview{position:relative;width:70px}.book-cover-preview img{width:70px;height:96px;object-fit:cover;border-radius:7px;box-shadow:0 5px 12px rgba(53,35,63,.2)}.book-cover-preview button{position:absolute;right:-7px;top:-7px;border:0;border-radius:50%;width:24px;height:24px;background:#6f4a79;color:#fff}.catalog-status{margin:9px 0;padding:10px;border-radius:10px;background:#f6f1f8;font-weight:800;color:#6f5978}
+.reading-book-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px;border-bottom:1px solid rgba(190,170,200,.4)}.reading-cover-mini{width:44px;height:60px}.reading-cover-mini img,.reading-cover-mini .shelf-book-placeholder{width:44px;height:60px}.reading-book-row small{display:block;color:#88778e;margin-top:3px}
+.album-book-summary{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:10px 14px;border-radius:13px;background:linear-gradient(135deg,#fff4cf,#f3e7ff);border:1px solid #dfc688;color:#6c5276}.album-book-summary strong{font-size:22px}
+.book-shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:15px;align-items:end}.shelf-book-card{text-align:center;min-width:0}.shelf-book-cover{height:145px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;border-bottom:10px solid #9b6948;box-shadow:0 5px 0 #6f4832}.shelf-book-cover img,.shelf-book-cover .shelf-book-placeholder{width:88px;height:128px;object-fit:cover;border-radius:4px 7px 7px 4px;box-shadow:5px 4px 10px rgba(49,31,35,.28)}.shelf-book-card h3{font-size:13px;line-height:1.3;margin:10px 0 3px;word-break:keep-all}.shelf-book-card p,.shelf-book-card small{font-size:11px;color:#88778d;margin:2px 0}
+.shelf-book-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px;box-sizing:border-box;background:linear-gradient(145deg,#7e4c91,#c58bb8);color:#fff;text-align:center}.shelf-book-placeholder.english{background:linear-gradient(145deg,#436fa4,#77add0)}.shelf-book-placeholder span{font-size:20px;font-weight:950;margin-bottom:7px}.shelf-book-placeholder b{font-size:11px;line-height:1.25;max-height:4em;overflow:hidden}.empty-book-shelf{grid-column:1/-1;padding:50px 15px;text-align:center;color:#88778e}
+@media(max-width:700px){.travel-diary-list{grid-template-columns:1fr}.book-shelf-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.profile-gate{position:fixed;inset:0;z-index:9999;display:none;place-items:center;padding:20px;background:rgba(53,32,65,.68);backdrop-filter:blur(8px)}.profile-gate.open{display:grid}.profile-gate-card{width:min(720px,95vw);padding:30px;border-radius:30px;text-align:center;background:linear-gradient(155deg,#fffdf8,#fff1f7 55%,#f0ebff);border:2px solid #d7b37b;box-shadow:0 25px 70px rgba(47,28,55,.28)}.profile-flower{font-size:52px}.profile-gate-card h1{color:#6b4b72}.profile-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}.profile-choice{display:grid;place-items:center;gap:7px;min-height:180px;border-radius:24px;border:2px solid #ead7e5;background:#fff;cursor:pointer;color:#5d4968}.profile-choice.child{background:linear-gradient(145deg,#fff5cf,#fff0f6)}.profile-choice.parent{background:linear-gradient(145deg,#eff8ef,#f3efff)}.profile-avatar{font-size:58px}.profile-choice b{font-size:22px}.profile-switch-button{position:fixed;right:16px;bottom:74px;z-index:350;border:0;border-radius:999px;padding:10px 14px;background:rgba(255,255,255,.93);color:#684b75;font-weight:900;box-shadow:0 7px 22px rgba(55,36,65,.2)}
+.bompoom-content{padding-bottom:26px!important}.bompoom-hero{display:grid;grid-template-columns:minmax(0,1fr) 170px;align-items:center;gap:20px;padding:22px 26px;border-radius:26px;background:linear-gradient(135deg,#fff7da,#ffe8f2,#e8f4e2)}.bompoom-kicker{display:inline-flex;padding:5px 12px;border-radius:999px;background:#fff;color:#a05a7c;font-weight:900}.bompoom-hero h2{font-size:30px;color:#6a4a70;margin:12px 0 7px}.bompoom-door{width:145px;height:145px;border-radius:50%;display:grid;place-items:center;font-size:58px;background:radial-gradient(circle,#fff 0 28%,#ffe9ab 29% 45%,#dcb8ed 46% 63%,#8abf86 64% 100%);border:5px solid #fff9da;box-shadow:0 0 28px #ffc664}.bompoom-status-strip{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:10px;align-items:center;margin:14px 0;padding:13px;border-radius:18px}.bompoom-status-strip>div{display:flex;flex-direction:column;padding:4px 12px}.bompoom-status-strip strong{font-size:19px;color:#684f72}.bompoom-closed{display:grid;place-items:center;text-align:center;min-height:320px;border-radius:24px;padding:30px}.bompoom-closed>span{font-size:70px}.bompoom-open-area{display:grid;gap:14px}.bompoom-step,.bompoom-passport-preview{padding:18px;border-radius:23px}.bompoom-step-head{display:flex;align-items:center;gap:13px;margin-bottom:13px}.bompoom-step-head>span{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ffbdd3,#f3d074);font-weight:950}.bompoom-step-head h2{margin:0;color:#654c70}.bompoom-theme-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.bompoom-theme-grid button,.bompoom-level-grid button{border:2px solid transparent;border-radius:17px;background:#fff;padding:13px;cursor:pointer;color:#654e6c}.bompoom-theme-grid button{display:grid;place-items:center;gap:5px;min-height:118px}.bompoom-theme-grid span{font-size:35px}.bompoom-theme-grid button.active,.bompoom-level-grid button.active{border-color:#d797b8;background:#fff4f9}.bompoom-level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.bompoom-level-grid button{display:flex;flex-direction:column;gap:4px;text-align:left}.bompoom-level-grid b{font-size:18px}.bompoom-level-grid span{color:#b05c81;font-weight:900}.bompoom-mission-list{display:grid;gap:8px}.bompoom-mission-item{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:9px;width:100%;padding:13px;border:1px solid #e3d5e5;border-radius:14px;background:#fff;text-align:left;color:#5d5062}.bompoom-mission-item>span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#f0e7f3}.bompoom-mission-item.done{background:#f2faef;border-color:#a9d39d}.bompoom-mission-item.done>span{background:#8dc982;color:#fff}.bompoom-mission-empty{padding:34px;text-align:center;color:#95879a;border:2px dashed #d9cadf;border-radius:15px}.bompoom-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:14px}.bompoom-actions button:disabled{opacity:.45}.passport-preview-head{display:flex;align-items:center;justify-content:space-between;border-bottom:2px dashed #ddc0a7;padding-bottom:12px}.passport-preview-head>span{font-size:42px}.bompoom-stamp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}.bompoom-stamp{aspect-ratio:1;border:2px dashed #d6afc3;border-radius:50%;display:grid;place-items:center;text-align:center;padding:7px;background:#fffaf5}.bompoom-stamp span{font-size:27px}.bompoom-stamp b{font-size:11px}.bompoom-stamp small{font-size:9px}.bompoom-no-stamp{grid-column:1/-1;padding:25px;text-align:center}.bompoom-complete-modal{text-align:center}.big-stamp{font-size:72px;width:130px;height:130px;border:5px double #d6a854;border-radius:50%;display:grid;place-items:center;margin:auto;background:#fff8dd}.bompoom-reward-big{display:inline-flex;padding:11px 22px;border-radius:999px;background:linear-gradient(135deg,#ffe19b,#ffbbd6);font-size:25px;font-weight:950;color:#815165;margin:12px}.modal-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+@media(max-width:900px){.bompoom-theme-grid{grid-template-columns:repeat(2,1fr)}.bompoom-stamp-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:620px){.profile-choice-grid,.bompoom-level-grid{grid-template-columns:1fr}.bompoom-hero{grid-template-columns:1fr}.bompoom-door{display:none}.bompoom-status-strip{grid-template-columns:1fr 1fr}.bompoom-status-strip .btn{grid-column:1/-1}.bompoom-stamp-grid{grid-template-columns:repeat(3,1fr)}}
